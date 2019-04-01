@@ -1,17 +1,22 @@
 const express = require('express');
 const router = express.Router();
-// const db = require('../data/module');
 const utils = require('./utils');
 
 router.get('/', function (req, res) {
-    // check whether user is logged in
-    utils.checkUserStatus(req, res);
-    // let username = req.session.user.username;
+    if(utils.isUserLogin(req))
+        res.redirect('/menu');
 
     res.render('home', {
-        title: 'Hey',
-        message: 'Hello there!'
+        title: 'Hey'
     });
+});
+
+router.post('/', function (req, res) {
+    console.log("1111");
+    if(!utils.isUserLogin(req)) {
+        res.redirect('/user');
+    }
+    res.redirect('/menu');
 });
 
 module.exports = router;

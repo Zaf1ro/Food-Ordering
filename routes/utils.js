@@ -4,14 +4,15 @@
  */
 
 // check whether user is logged in
-checkUserStatus = function (req, res) {
+isUserLogin = function (req) {
     if (!req.session.user) {
         req.session.errorCode = 101;
-        res.redirect('/user');
+        return false;
     }
+    return true;
 };
 
 
 module.exports = {
-    checkUserStatus
+    isUserLogin
 };

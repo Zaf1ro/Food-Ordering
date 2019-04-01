@@ -7,15 +7,14 @@ block content
         form(method='post' action='/user')
             div.form-group
                 label(for='name') Name:
-                input(type='text', placeholder='Guest' name='name')
+                input(type='text', placeholder='Guest' name='name' required)
             div.form-group
                 label(for='tableID') Table ID:
-                select(name='tableID')
+                select(name='tableID' required)
                     option(value='', selected='selected') Select a Table ID
                     each table in tables
                         option(value=table) #{table}
             input(type='submit', value='Sign Up', data-transition='fade', data-theme='c')
-            //button.btn.btn-primary(type='submit') Start to order
 
 block scripts
     script(type='text/javascript' src='/lib/angular.js')

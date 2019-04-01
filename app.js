@@ -18,7 +18,7 @@ app.use(cookieParser('HASH_CODE'));
 
 // app starts
 const PORT = process.env.NODE_ENV === 'production' ? 80 : 3000;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log("Server being hosted on localhost:3000");
 });
 
@@ -47,3 +47,11 @@ app.use(function (req, res, next) {
 // router
 const router = require('./routes');
 app.use(router);
+
+// socket.io
+const io = require('socket.io')(server);
+const meal = io.of('/meal');
+
+meal.on('connection', socket => {
+
+});

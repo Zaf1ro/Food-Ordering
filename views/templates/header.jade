@@ -1,7 +1,7 @@
 .navbar.navbar-default.navbar-fixed-top
     .container
         .navbar-header
-            a.navbar-brand(href='/home') Home
+            a.navbar-brand(href='/') Home
             button.navbar-toggle(type='button' data-toggle='collapse' data-target='#navbar-main')
                 span(class='icon-bar')
                 span(class='icon-bar')
@@ -10,7 +10,7 @@
         #navbar-main.navbar-collapse.collapse
             ul.nav.navbar-nav
                 li
-                    a.nav-on(href='/home') Category
+                    a.nav-on(href='/category') Category
                 li
                     a.nav-on(href='/order') Order
             ul.nav.navbar-nav.navbar-right
@@ -20,5 +20,5 @@
                             li
                                 a#username(href='#')=user.username
                             li
-                                a(href='/user/logout') 退出
+                                a(href='/user/changeName') Change Name
 
