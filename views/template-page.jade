@@ -1,0 +1,25 @@
+doctype html
+html
+    head
+        title= title
+        meta(name='viewport', content='width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no')
+        //link(rel='icon', type='image/ico', href='/favicon.ico')
+        //link(rel='shortcut icon', type='image/ico', href='/favicon.ico')
+        //link(rel='bookmark', type='image/ico', href='/favicon.ico')
+        link(rel='stylesheet', href='/lib/bootstrap/bootstrap.min.css')
+        link(rel='stylesheet', href='/stylesheets/eden.css')
+        link(rel='stylesheet', href='/stylesheets/common.css')
+        block styles
+    body
+
+        include templates/header
+
+        #main-content.container(style='margin-top: 42px;')
+            .page-header
+                .row
+                    .col-lg-12
+                        block content
+
+        include templates/footer
+
+block scripts

@@ -5,10 +5,10 @@
 
 // check whether user is logged in
 checkUserStatus = function (req, res) {
-    // if (!req.session.user) {
-    //     req.session.errorCode = 101;
-    //     res.redirect('/user/register');
-    // }
+    if (!req.session.user) {
+        req.session.errorCode = 101;
+        res.redirect('/user');
+    }
 };
 
 
