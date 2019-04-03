@@ -1,10 +1,43 @@
 extends template-page
 
+block styles
+
 block content
-    form(action="/" method="post")
-        button.btn.btn-primary(type='submit') Start to order
+    section.slider.d-flex.align-items-center
+        .container
+            .row.d-flex.justify-content-center
+                .col-md-12
+                    .slider-title_box
+                        .row
+                            .col-md-12
+                                .slider-content_wrap
+                                    h1 The Best Restaurant in NYC
+                                    h5 Let's uncover the best places to eat, drink, and all you need.
+                        .row.d-flex.justify-content-center
+                            .col-md-10
+                                form.form-wrap.mt-4(method='POST' action='/')
+                                    // user control
+                                    if user && user.username && user.tableID
+                                        .btn-group(role='group', aria-label='Basic example', , style='display: flex; align-items: center; justify-content: center;')
+                                            button.btn-form(type='submit')
+                                                span.icon-magnifier.search-icon
+                                                | Start To Order
+                                                i.pe-7s-angle-right
+                                    else
+                                        .btn-group(role='group', aria-label='Basic example')
+                                            input.btn-group1(type='text' name="username" placeholder='What is Your Name' required)
+                                            //input.btn-group2(type='text', name="tableID", placeholder='What is Your Table Number')
+                                            select.btn-group2(name='tableID' required)
+                                                option(value='' disabled="disabled" selected='selected') Select a Table ID
+                                                each table in tables
+                                                    option(value=table) #{table}
+                                            button.btn-form(type='submit')
+                                                span.icon-magnifier.search-icon
+                                                | Start To Order
+                                                i.pe-7s-angle-right
+                                //.slider-link
+                                //    a(href='#') Browse Popular
+                                //    span or
+                                //    a(href='#') Recently Added
 
 block scripts
-    script(type='text/javascript' src='/lib/jquery/jquery.min.js')
-    script(type='text/javascript' src='/lib/bootstrap/bootstrap.min.js')
-    script(type='text/javascript' src='/js/home.js')

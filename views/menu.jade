@@ -1,61 +1,98 @@
 extends template-page
 
-block styles
-    link(rel='stylesheet', href='/css/meal.css')
-
 block content
-    ul.breadcrumb
-        li
-            a(href='/') Home
-        li Menu
-    ul.breadcrumb
-
-    if dishes && dishes.length > 0
-        each dish in dishes
-            .col-lg-3.col-sm-6.col-xs-12
-                .well
-                    h5=dish.dishName
-                    p.text-danger(dish-id=dish._id dish-name=dish.dishName dish-price=dish.price) ¥
-                        =dish.price
-                        | /份
-                        span.glyphicon.glyphicon-plus-sign.text-success.add-dish-btn
-
-    .affix.col-lg-4.col-sm-6.col-xs-12.cart-container
-        .cart-basket#cart-basket
-            .basket-banner Cart
-            .dish-list#dish-list
-        .basket-info#basket-info
-            .basket-dishes
-                span.glyphicon.glyphicon-shopping-cart
-                span.badge 0
-            span.total-price 0
-            button.btn.btn-success#submit-meal-btn Submit
-
-    .modal.fade.in(tabindex='-1' id='confirm-order-modal' role='dialog' aria-hidden='true' data-backdrop='static')
-        .modal-dialog
-            .panel.panel-danger
-                .panel-heading
-                    h3.panel-title Confirm
-                .modal-body.text-center
-                    h4.text-danger
-                        span.submit-user
-                        | &nbsp;提交了订单，
-                        span#accept-time-count --:--
-                        | 后自动提交，请确认！
-                    table.table.table-hover.table-striped.table-responsive
-                        thead
-                            tr
-                                th(style='text-align:center;') Name
-                                th(style='text-align:center;') Price
-                                th(style='text-align:center;') Number
-                        tbody#confirm-dishes
-                    h5#order-info.text-danger(style='text-align: left;')
-                .modal-footer
-                    button#accept-order.btn.btn-success(type="button" disabled) Agree
-                    button#retreat-order.btn.btn-danger(type="button" disabled) Reject
-
-block scripts
-    script(type='text/javascript' src='/lib/jquery/jquery.min.js')
-    script(type='text/javascript' src='/lib/bootstrap/bootstrap.min.js')
-    script(type='text/javascript' src='/lib/socket.io.js')
-    script(type='text/javascript' src='/js/meal.js')
+    section.main-block.light-bg
+        .container
+            .row.justify-content-center
+                .col-md-5
+                    .styled-heading
+                        h3 Featured Places
+            .row
+                .col-md-4.featured-responsive
+                    .featured-place-wrap
+                        a(href='detail.html')
+                            img.img-fluid(src='images/featured1.jpg', alt='#')
+                            span.featured-rating-orange 6.5
+                            .featured-title-box
+                                h6 Burger & Lobster
+                                p Restaurant
+                                span •
+                                p 3 Reviews
+                                span  •
+                                p
+                                    span $$$
+                                    | $$
+                                ul
+                                    li
+                                        span.icon-location-pin
+                                        p 1301 Avenue, Brooklyn, NY 11230
+                                    li
+                                        span.icon-screen-smartphone
+                                        p +44 20 7336 8898
+                                    li
+                                        span.icon-link
+                                        p https://burgerandlobster.com
+                                .bottom-icons
+                                    .closed-now CLOSED NOW
+                                    span.ti-heart
+                                    span.ti-bookmark
+                .col-md-4.featured-responsive
+                    .featured-place-wrap
+                        a(href='detail.html')
+                            img.img-fluid(src='images/featured2.jpg', alt='#')
+                            span.featured-rating-green 9.5
+                            .featured-title-box
+                                h6 Joe’s Shanghai
+                                p Restaurant
+                                span •
+                                p 3 Reviews
+                                span  •
+                                p
+                                    span $$$
+                                    | $$
+                                ul
+                                    li
+                                        span.icon-location-pin
+                                        p 1301 Avenue, Brooklyn, NY 11230
+                                    li
+                                        span.icon-screen-smartphone
+                                        p +44 20 7336 8898
+                                    li
+                                        span.icon-link
+                                        p https://burgerandlobster.com
+                                .bottom-icons
+                                    .closed-now CLOSED NOW
+                                    span.ti-heart
+                                    span.ti-bookmark
+                .col-md-4.featured-responsive
+                    .featured-place-wrap
+                        a(href='detail.html')
+                            img.img-fluid(src='images/featured3.jpg', alt='#')
+                            span.featured-rating 3.2
+                            .featured-title-box
+                                h6 Tasty Hand-Pulled Noodles
+                                p Restaurant
+                                span •
+                                p 3 Reviews
+                                span  •
+                                p
+                                    span $$$
+                                    | $$
+                                ul
+                                    li
+                                        span.icon-location-pin
+                                        p 1301 Avenue, Brooklyn, NY 11230
+                                    li
+                                        span.icon-screen-smartphone
+                                        p +44 20 7336 8898
+                                    li
+                                        span.icon-link
+                                        p https://burgerandlobster.com
+                                .bottom-icons
+                                    .open-now OPEN NOW
+                                    span.ti-heart
+                                    span.ti-bookmark
+            .row.justify-content-center
+                .col-md-4
+                    .featured-btn-wrap
+                        a.btn.btn-danger(href='#') VIEW ALL

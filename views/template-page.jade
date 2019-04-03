@@ -3,23 +3,35 @@ html
     head
         title= title
         meta(name='viewport', content='width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no')
-        //link(rel='icon', type='image/ico', href='/favicon.ico')
-        //link(rel='shortcut icon', type='image/ico', href='/favicon.ico')
-        //link(rel='bookmark', type='image/ico', href='/favicon.ico')
-        link(rel='stylesheet', href='/lib/bootstrap/bootstrap.min.css')
-        link(rel='stylesheet', href='/stylesheets/eden.css')
-        link(rel='stylesheet', href='/stylesheets/common.css')
+        link(rel='shortcut icon', type='image/ico', href='images/favicon.ico')
+        link(rel='stylesheet', href='/css/bootstrap.min.css')
+        // Google Fonts
+        link(href='https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900', rel='stylesheet')
+        // Simple line Icon
+        link(rel='stylesheet', href='/css/simple-line-icons.css')
+        // Themify Icon
+        link(rel='stylesheet', href='/css/themify-icons.css')
+        // Hover Effects
+        link(rel='stylesheet', href='/css/set1.css')
+        // Swipper Slider
+        link(rel='stylesheet', href='/css/swiper.min.css')
+        // Magnific Popup CSS
+        link(rel='stylesheet', href='/css/magnific-popup.css')
+        // Main CSS
+        link(rel='stylesheet', href='/css/style.css')
         block styles
+
     body
-
         include templates/header
-
-        #main-content.container(style='margin-top: 42px;')
-            .page-header
-                .row
-                    .col-lg-12
-                        block content
-
+        block content
         include templates/footer
 
+
+script(src='js/jquery-3.2.1.min.js')
+script(src='js/popper.min.js')
+script(src='js/bootstrap.min.js')
+// Magnific popup JS
+script(src='js/jquery.magnific-popup.js')
+// Swipper Slider JS
+script(src='js/swiper.min.js')
 block scripts
