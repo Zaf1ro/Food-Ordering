@@ -1,0 +1,89 @@
+[
+  {
+	"id": 101,
+  	"name": "Stuffed Mushrooms",
+	"img": "images/appetizer/App-1.png",
+	"rating": 6.5,
+	"price": 20,
+	"recipe": [
+	  "Baby mushrooms",
+	  "Butter",
+	  "Garlic",
+	  "Breadcrumbs",
+	  "Kosher salt",
+	  "Ground black pepper"
+	]
+  },
+  {
+	"id": 102,
+	"name": "Peppers & Onions",
+	"img": "images/appetizer/App-2.jpg",
+	"rating": 9.2,
+	"price": 15,
+	"recipe": [
+	  "Extra-virgin olive oil",
+	  "Peppers",
+	  "Sweet onions",
+	  "Sea salt"
+	]
+  },
+  {
+	"id": 103,
+	"name": "Baked Clams",
+	"img": "images/appetizer/App-3.jpg",
+	"rating": 8.1,
+	"price": 26,
+	"recipe": [
+	  "Littleneck clams",
+	  "Plain bread crumbs",
+	  "Fresh oregano leaves",
+	  "Red pepper flakes",
+	  "Kosher salt",
+	  "Chicken stock"
+	]
+  },
+  {
+	"id": 104,
+	"name": "Sautéed Shrimp",
+	"img": "images/appetizer/App-4.jpg",
+	"rating": 7.5,
+	"price": 29,
+	"recipe": [
+	  "Large or extra-large shrimp",
+	  "Crushed red pepper flakes",
+	  "Kosher salt",
+	  "Dry white wine",
+	  "Garlic cloves",
+	  "Extra-virgin olive oil"
+	]
+  },
+  {
+	"id": 105,
+	"name": "Calamari Fritti",
+	"img": "images/appetizer/App-5.jpg",
+	"rating": 7.6,
+	"price": 18,
+	"recipe": [
+	  "Cleaned squid",
+	  "All-purpose flour",
+	  "Stone-ground yellow cornmeal",
+	  "Salt, preferably kosher",
+	  "Freshly ground black pepper",
+	  "Peanut oil"
+	]
+  },
+  {
+	"id": 106,
+	"name": "Mussels",
+	"img": "images/appetizer/App-6.jpg",
+	"rating": 8.7,
+	"price": 25,
+	"recipe": [
+	  "Large shallots",
+	  "Garlic cloves",
+	  "Sea salt",
+	  "Maine mussels",
+	  "butter"
+	]
+  }
+]

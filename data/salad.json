@@ -1,0 +1,51 @@
+[
+  {
+	"id": 201,
+	"name": "Caesar",
+	"img": "images/salad/Sal-1.jpeg",
+	"rating": 9.5,
+	"price": 23,
+	"recipe": [
+	  "Anchovy fillets",
+	  "Garlic clove",
+	  "Kosher salt",
+	  "Egg yolks",
+	  "Fresh lemon juice",
+	  "Dijon mustard",
+	  "Olive oil",
+	  "Finely grated Parmesan",
+	  "Freshly ground black pepper"
+	]
+  },
+  {
+	"id": 202,
+	"name": "Tri Colore",
+	"img": "images/salad/Sal-2.jpg",
+	"rating": 8.7,
+	"price": 22,
+	"recipe": [
+	  "Arugula",
+	  "Belgian endive",
+	  "Radicchio",
+	  "Lemon Vinaigrette",
+	  "Parmigiano-Reggiano"
+	]
+  },
+  {
+	"id": 203,
+	"name": "Roquefort",
+	"img": "images/salad/Sal-3.jpg",
+	"rating": 9.1,
+	"price": 24,
+	"recipe": [
+	  "Torn salad greens",
+	  "Ripe pears",
+	  "Thinly sliced green onions",
+	  "Crumbled blue cheese",
+	  "Cider vinegar",
+	  "Slivered almonds, toasted",
+	  "Olive oil",
+	  "Dijon mustard"
+	]
+  }
+]

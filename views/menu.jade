@@ -1,100 +1,80 @@
 extends template-page
 
 block content
-    section.slider.slider-menu.d-flex.align-items-center
+    section.slider.slider-menu.d-flex.align-items-center.slider-apptizer
         .container
             .row.justify-content-center
                 .col-md-12.filler
                 .col-md-6
                     .styled-heading
                         h3 APPETIZERS
-            .row
-                .col-md-3.featured-responsive
-                    .featured-place-wrap
-                        img.img-fluid(src='images/App-1.png', alt='#')
-                        span.featured-rating 6.5
-                        .featured-title-box
-                            h6 Stuffed Mushrooms
-                            p Price: $18
-                            ul
-                                p Recipe:
-                                li
-                                    p 1. Baby mushrooms
-                                li
-                                    p 2. Butter
-                                li
-                                    p 3. Garlic
-                                li
-                                    p 4. Breadcrumbs
-                                li
-                                    p 5. Kosher salt
-                                li
-                                    p 6. Ground black pepper
-                            .add-btn-wrap
-                                a.btn.btn-danger(href='#') ADD
-                .col-md-3.featured-responsive
-                    .featured-place-wrap
-                        img.img-fluid(src='images/App-2.jpg', alt='#')
-                        span.featured-rating-green 9.2
-                        .featured-title-box
-                            h6 Peppers & Onions
-                            p Price: $15
-                            ul
-                                p Recipe:
-                                li
-                                    p 1. Extra-virgin olive oil
-                                li
-                                    p 2. Peppers
-                                li
-                                    p 3. Sweet onions
-                                li
-                                    p 4. Sea salt
-                            .add-btn-wrap
-                                a.btn.btn-danger(href='#') ADD
-                .col-md-3.featured-responsive
-                    .featured-place-wrap
-                        img.img-fluid(src='images/App-3.jpg', alt='#')
-                        span.featured-rating-green 8.1
-                        .featured-title-box
-                            h6 Baked Clams
-                            p Price: $26
-                            ul
-                                p Recipe:
-                                li
-                                    p 1. Littleneck clams
-                                li
-                                    p 2. Plain bread crumbs
-                                li
-                                    p 3. Fresh oregano leaves
-                                li
-                                    p 4. Red pepper flakes
-                                li
-                                    p 5. Kosher salt
-                                li
-                                    p 6. Chicken stock
-                            .add-btn-wrap
-                                a.btn.btn-danger(href='#') ADD
-                .col-md-3.featured-responsive
-                    .featured-place-wrap
-                        img.img-fluid(src='images/App-4.jpg', alt='#')
-                        span.featured-rating-orange 7.5
-                        .featured-title-box
-                            h6 Sautéed Shrimp
-                            p Price: $29
-                            ul
-                                p Recipe:
-                                li
-                                    p 1. Large or extra-large shrimp
-                                li
-                                    p 2. Crushed red pepper flakes
-                                li
-                                    p 3. Kosher salt
-                                li
-                                    p 4. Dry white wine
-                                li
-                                    p 5. Garlic cloves
-                                li
-                                    p 6. Extra-virgin olive oil
-                            .add-btn-wrap
-                                a.btn.btn-danger(href='#') ADD
+            if appetizers && appetizers.length > 0
+                - var index = 0
+                while index < appetizers.length
+                    .row
+                        each i in [0, 1, 2, 3]
+                            if index + i < appetizers.length
+                                - var elem = appetizers[index + i]
+                                .col-md-3.featured-responsive
+                                    .featured-place-wrap
+                                        img.img-fluid(src=elem.img, alt='#')
+                                        if elem.rating > 9.0
+                                            span.featured-rating-s #{elem.rating}
+                                        else if elem.rating > 8.0
+                                            span.featured-rating-a #{elem.rating}
+                                        else if elem.rating > 7.0
+                                            span.featured-rating-b #{elem.rating}
+                                        else
+                                            span.featured-rating-c #{elem.rating}
+                                        .featured-title-box
+                                            h6=elem.name
+                                            p='Price: $' + elem.price
+                                            ul
+                                                p Recipe:
+                                                each val, j in elem.recipe
+                                                    li
+                                                        p= j+1 + '. ' + val
+                                            .add-btn-wrap
+                                                a.btn.btn-danger(href='#') ADD
+                            else
+                                break
+                    - index += 4
 
+    section.slider.slider-menu.d-flex.align-items-center.slider-salad
+        .container
+            .row.justify-content-center
+                .col-md-12.filler
+                .col-md-6
+                    .styled-heading
+                        h3 SALAD
+            if salad && salad.length > 0
+                - var index = 0
+                while index < salad.length
+                    .row
+                        each i in [0, 1, 2, 3]
+                            if index + i < salad.length
+                                - var elem = salad[index + i]
+                                .col-md-3.featured-responsive
+                                    .featured-place-wrap
+                                        img.img-fluid(src=elem.img, alt='#')
+                                        if elem.rating > 9.0
+                                            span.featured-rating-s #{elem.rating}
+                                        else if elem.rating > 8.0
+                                            span.featured-rating-a #{elem.rating}
+                                        else if elem.rating > 7.0
+                                            span.featured-rating-b #{elem.rating}
+                                        else
+                                            span.featured-rating-c #{elem.rating}
+                                        .featured-title-box
+                                            h6=elem.name
+                                            p='Price: $' + elem.price
+                                            ul
+                                                p Recipe:
+                                                each val, j in elem.recipe
+                                                    li
+                                                        p= j + 1 + '. ' + val
+                                            .add-btn-wrap
+                                                a.btn.btn-danger(href='#') ADD
+                            else
+                                break
+                    - index += 4

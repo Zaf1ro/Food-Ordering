@@ -1,6 +1,7 @@
-let express = require('express');
-let router = express.Router();
-let utils = require('./utils');
+const express = require('express');
+const router = express.Router();
+const utils = require('./utils');
+const model = require('../data/model_json');
 
 
 router.get('/menu', function (req, res) {
@@ -8,10 +9,12 @@ router.get('/menu', function (req, res) {
     if (!utils.isUserLogin(req, res))
         res.redirect('/');
     let user = req.session.user;
+    // console.log(model.appetizers);
     res.render('menu', {
         title: 'Menu',
         user: user,
-        menuList: [],
+        appetizers: model.appetizers,
+        salad: model.salad,
         nav: 'menu'
     });
 });

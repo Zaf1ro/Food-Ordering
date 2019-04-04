@@ -34,4 +34,13 @@ script(src='js/bootstrap.min.js')
 script(src='js/jquery.magnific-popup.js')
 // Swipper Slider JS
 script(src='js/swiper.min.js')
+script.
+    $(window).scroll(function () {
+        // 100 = The point you would like to fade the nav in.
+        if ($(window).scrollTop() > 100) {
+            $('.fixed').addClass('is-sticky');
+        } else {
+            $('.fixed').removeClass('is-sticky');
+        };
+    });
 block scripts
