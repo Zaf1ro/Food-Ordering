@@ -1,10 +1,11 @@
 let express = require('express');
 let router = express.Router();
-let util = require('./utils');
+let utils = require('./utils');
 
 
 router.get('/menu', function (req, res) {
-    if (!util.isUserLogin(req, res))
+    utils.debugPrint('Menu Get:', req.session.user);
+    if (!utils.isUserLogin(req, res))
         res.redirect('/');
     let user = req.session.user;
     res.render('menu', {

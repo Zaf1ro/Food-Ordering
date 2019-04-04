@@ -5,7 +5,7 @@ const utils = require('./utils');
 const userList = [];
 
 router.get('/', function (req, res) {
-    console.log(req.session.user);
+    utils.debugPrint('Home Get:', req.session.user);
     res.render('home', {
         user: req.session.user,
         tables: [1, 2, 3]
@@ -13,16 +13,13 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-    if(!utils.isUserLogin(req))
+    if(!utils.isUserLogin(req)) {
         registerUser(req.body.username, req.body.tableID);
-
-    req.session.user = {
-        username: req.body.username,
-        tableID: req.body.tableID,
-        createTime: new Date(),
-        updateTime: new Date()
-    };
-
+        req.session.user = {
+            username: req.body.username,
+            tableID: req.body.tableID
+        };
+    }
     res.redirect('/menu');
 });
 

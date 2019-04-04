@@ -12,7 +12,14 @@ isUserLogin = function (req) {
     return true;
 };
 
+debugPrint = function (message, obj) {
+    console.log(message);
+    console.log(obj);
+    console.log();
+};
+
 
 module.exports = {
-    isUserLogin
+    isUserLogin,
+    debugPrint
 };
