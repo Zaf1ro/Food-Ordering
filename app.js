@@ -25,7 +25,7 @@ const server = app.listen(PORT, () => {
 // session
 const session = require('express-session');
 app.use(session({
-    cookie: { maxAge: 1800000 },
+    cookie: { maxAge: 1800000, secure: false },
     errorCode: 0,
     secret: 'HASH_CODE', // TODO: add a meaningful string
     resave: true,
@@ -33,9 +33,23 @@ app.use(session({
     // store: mongoStore
 }));
 
+app.use(function (req, res, next) {
+    res.locals.user = req.session.user;
+    // TODO: add err message notification
+    // const err = req.session.error;
+    // delete req.session.error;
+    // res.locals.message = '';
+    // if (err) {
+    //     res.locals.message = err;
+    // }
+    next();
+});
+
 // router
 const router = require('./routes');
 app.use(router);
+
+// 404
 app.use(function (req, res, next) {
     return res.status(404).render('404');
 });

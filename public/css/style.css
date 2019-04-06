@@ -42,6 +42,28 @@
   font-weight: 700 !important;
 }
 
+.badge {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .125rem;
+  font-size: 11px;
+  font-weight: initial;
+  line-height: 1;
+  padding: .375rem .5625rem;
+  font-family: "ubuntu-medium", sans-serif;
+}
+
+.badge-gradient-success {
+  background: linear-gradient(to right, #84d9d2, #07cdae);
+  color: #ffffff;
+}
+
+.badge-gradient-process {
+  background: linear-gradient(to right, #f6e384, #ffd500);
+  color: #ffffff;
+}
 
 /* ==============================================================
    GLOBAL STYLES

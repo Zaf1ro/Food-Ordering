@@ -1,0 +1,47 @@
+extends template-with-header
+
+block content
+    section.slider.slider-menu.d-flex.align-items-center
+        .container
+            .row.justify-content-center
+                .col-md-12.filler-3
+                .col-md-6
+                    .styled-heading
+                        h3="Order"
+            .row
+                .col-12.grid-margin
+                    .card
+                        .card-body
+                            h4.card-title Recent Tickets
+                            .table-responsive
+                                table.table
+                                    thead
+                                        tr
+                                            th
+                                                | Food
+                                            th
+                                                | Assignee
+                                            th
+                                                | Number
+                                            th
+                                                | Status
+                                            th
+                                                | Order Time
+                                        if orders && orders.length > 0
+                                            each order in orders
+                                                tbody
+                                                    tr
+                                                        td
+                                                            | #{order.food_name}
+                                                        td
+                                                            | #{order.username}
+                                                        td
+                                                            | #{order.number}
+                                                        td
+                                                            if order.status
+                                                                label.badge.badge-gradient-success DONE
+                                                            else
+                                                                label.badge.badge-gradient-process PROGRESS
+                                                        td
+                                                            | #{order.hour} : #{order.minute} : #{order.second}
+

@@ -7,7 +7,6 @@ const userList = [];
 router.get('/', function (req, res) {
     utils.debugPrint('Home Get:', req.session.user);
     res.render('home', {
-        user: req.session.user,
         tables: [1, 2, 3]
     });
 });

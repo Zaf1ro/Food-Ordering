@@ -9,10 +9,8 @@ router.get('/menu', function (req, res) {
     if (!utils.isUserLogin(req, res))
         res.redirect('/');
 
-    // console.log(model.appetizers);
     res.render('menu', {
         title: 'Menu',
-        user: req.session.user,
         recipe: model.recipe,
         nav: 'menu'
     });

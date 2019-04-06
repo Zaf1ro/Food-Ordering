@@ -1,0 +1,13 @@
+[
+	{
+		"id": 301,
+		"table_id": 2,
+		"food_id": 301,
+		"username": "123",
+		"number": 1,
+		"status": 1,
+		"hour": 12,
+		"minute": 10,
+		"second": 23
+	}
+]
