@@ -1,11 +1,11 @@
-extends template-page
+extends template-with-header
 
 mixin recipe-section(food_type, idx, user)
     if food_type
         section.slider.slider-menu.d-flex.align-items-center(id='slider-'+food_type.name)
             .container
                 .row.justify-content-center
-                    - var size = idx == 0 ? '5' : '2'
+                    - var size = idx === 0 ? '5' : '2'
                     .col-md-12(class='filler-'+size)
                     .col-md-6
                         .styled-heading
@@ -45,9 +45,8 @@ mixin recipe-section(food_type, idx, user)
                         - index += 4
         - var id_name = 'slider-' + food_type.name;
         - var img_url = 'url(' + food_type.img_url + ')'
-        script.
-
-            document.getElementById("#{id_name}").style.backgroundImage = "#{img_url}";
+        //script.
+            // document.getElementById("#{id_name}").style.backgroundImage = "#{img_url}";
 
 
 block content

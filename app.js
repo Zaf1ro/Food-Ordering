@@ -33,20 +33,12 @@ app.use(session({
     // store: mongoStore
 }));
 
-app.use(function (req, res, next) {
-    res.locals.user = req.session.user;
-    const err = req.session.error;
-    delete req.session.error;
-    res.locals.message = '';
-    if (err) {
-        res.locals.message = err;
-    }
-    next();
-});
-
 // router
 const router = require('./routes');
 app.use(router);
+app.use(function (req, res, next) {
+    return res.status(404).render('404');
+});
 
 // socket.io
 const io = require('socket.io')(server);
