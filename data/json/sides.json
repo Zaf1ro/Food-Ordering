@@ -1,0 +1,52 @@
+{
+	"name": "Sides",
+	"img_url2": "/images/bg/sides.png",
+	"list": [
+		{
+			"id": 401,
+			"name": "Roasted Potatoes",
+			"img": "/images/sides/1.jpg",
+			"rating": 6.7,
+			"price": 18,
+			"recipe": [
+				"Vegetable oil",
+				"Sea salt",
+				"Freshly ground black pepper",
+				"Dried rosemary",
+				"Potatoes",
+				"Garlic",
+				"parsley"
+			]
+		},
+		{
+			"id": 402,
+			"name": "Sausage or Meatballs",
+			"img": "/images/sides/2.jpg",
+			"rating": 8.0,
+			"price": 22,
+			"recipe": [
+				"Leahy's Bulk Italian Sausage",
+				"Egg",
+				"Bread Crumbs",
+				"Onion",
+				"Garlic"
+			]
+		},
+		{
+			"id": 403,
+			"name": "Escarole & Beans",
+			"img": "/images/sides/3.jpg",
+			"rating": 8.3,
+			"price": 15,
+			"recipe": [
+				"Olive oil",
+				"Escarole",
+				"Salt and pepper",
+				"Red pepper flakes",
+				"Clove garlic",
+				"Cannellini beans",
+				"Fresh parsley"
+			]
+		}
+	]
+}

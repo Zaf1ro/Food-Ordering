@@ -1,80 +1,65 @@
 extends template-page
 
-block content
-    section.slider.slider-menu.d-flex.align-items-center.slider-apptizer
-        .container
-            .row.justify-content-center
-                .col-md-12.filler
-                .col-md-6
-                    .styled-heading
-                        h3 APPETIZERS
-            if appetizers && appetizers.length > 0
-                - var index = 0
-                while index < appetizers.length
-                    .row
-                        each i in [0, 1, 2, 3]
-                            if index + i < appetizers.length
-                                - var elem = appetizers[index + i]
-                                .col-md-3.featured-responsive
-                                    .featured-place-wrap
-                                        img.img-fluid(src=elem.img, alt='#')
-                                        if elem.rating > 9.0
-                                            span.featured-rating-s #{elem.rating}
-                                        else if elem.rating > 8.0
-                                            span.featured-rating-a #{elem.rating}
-                                        else if elem.rating > 7.0
-                                            span.featured-rating-b #{elem.rating}
-                                        else
-                                            span.featured-rating-c #{elem.rating}
-                                        .featured-title-box
-                                            h6=elem.name
-                                            p='Price: $' + elem.price
-                                            ul
-                                                p Recipe:
-                                                each val, j in elem.recipe
-                                                    li
-                                                        p= j+1 + '. ' + val
-                                            .add-btn-wrap
-                                                a.btn.btn-danger(href='#') ADD
-                            else
-                                break
-                    - index += 4
+mixin recipe-section(food_type, idx, user)
+    if food_type
+        section.slider.slider-menu.d-flex.align-items-center(id='slider-'+food_type.name)
+            .container
+                .row.justify-content-center
+                    - var size = idx == 0 ? '5' : '2'
+                    .col-md-12(class='filler-'+size)
+                    .col-md-6
+                        .styled-heading
+                            h3=food_type.name
+                - var food_list = food_type.list;
+                if food_list && food_list.length > 0
+                    - var index = 0
+                    while index < food_list.length
+                        .row
+                            each i in [0, 1, 2, 3]
+                                if index + i < food_list.length
+                                    - var elem = food_list[index + i]
+                                    .col-md-3.featured-responsive
+                                        .featured-place-wrap
+                                            img.img-fluid(src=elem.img, alt='#')
+                                            if elem.rating > 9.0
+                                                span.featured-rating-s #{elem.rating}
+                                            else if elem.rating > 8.0
+                                                span.featured-rating-a #{elem.rating}
+                                            else if elem.rating > 7.0
+                                                span.featured-rating-b #{elem.rating}
+                                            else
+                                                span.featured-rating-c #{elem.rating}
+                                            .featured-title-box
+                                                h6=elem.name
+                                                p='Price: $' + elem.price
+                                                ul
+                                                    p Recipe:
+                                                    each val, j in elem.recipe
+                                                        li
+                                                            p= j+1 + '. ' + val
+                                                .add-btn-wrap
+                                                    a.btn.btn-danger(href='/add?' + 'tableID='+user.tableID+'&'
+                                                    + 'username='+user.username + 'foodID='+elem.id) ADD
+                                else
+                                    break
+                        - index += 4
+        - var id_name = 'slider-' + food_type.name;
+        - var img_url = 'url(' + food_type.img_url + ')'
+        script.
 
-    section.slider.slider-menu.d-flex.align-items-center.slider-salad
-        .container
-            .row.justify-content-center
-                .col-md-12.filler
-                .col-md-6
-                    .styled-heading
-                        h3 SALAD
-            if salad && salad.length > 0
-                - var index = 0
-                while index < salad.length
-                    .row
-                        each i in [0, 1, 2, 3]
-                            if index + i < salad.length
-                                - var elem = salad[index + i]
-                                .col-md-3.featured-responsive
-                                    .featured-place-wrap
-                                        img.img-fluid(src=elem.img, alt='#')
-                                        if elem.rating > 9.0
-                                            span.featured-rating-s #{elem.rating}
-                                        else if elem.rating > 8.0
-                                            span.featured-rating-a #{elem.rating}
-                                        else if elem.rating > 7.0
-                                            span.featured-rating-b #{elem.rating}
-                                        else
-                                            span.featured-rating-c #{elem.rating}
-                                        .featured-title-box
-                                            h6=elem.name
-                                            p='Price: $' + elem.price
-                                            ul
-                                                p Recipe:
-                                                each val, j in elem.recipe
-                                                    li
-                                                        p= j + 1 + '. ' + val
-                                            .add-btn-wrap
-                                                a.btn.btn-danger(href='#') ADD
-                            else
-                                break
-                    - index += 4
+            document.getElementById("#{id_name}").style.backgroundImage = "#{img_url}";
+
+
+block content
+    - var idx = 0;
+    - var userInfo = user;
+    each food_type in recipe
+        + recipe-section(food_type, idx, userInfo)
+        - idx++;
+
+
+block scripts
+script.
+    // socket.io
+    ;(function (window, document, $) {
+    }(window, document, $));

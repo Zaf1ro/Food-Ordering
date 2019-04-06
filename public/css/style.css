@@ -14,15 +14,24 @@
   background: url(../images/bg/salad.png) no-repeat;
 }
 
-.filler {
-  padding: 3em;
+.filler-2 {
+  padding: 2em;
+}
+
+.filler-5 {
+  padding: 5em;
+}
+
+.row {
+  padding-bottom: 15px
 }
 
 /* ==============================================================
    GLOBAL STYLES
    ============================================================== */
 body {
-  background: url(../images/broken_noise.png) repeat;
+  background: url(../images/bg/default.jpg) repeat;
+  background-size: contain;
   font-family: 'Roboto', sans-serif; }
 
 h1 {
@@ -74,7 +83,7 @@ p {
   background: #f3f4f7; }
 
 .dark-bg {
-  background: #252a33; }
+  background: #181818; }
 .tlinks{text-indent:-9999px;height:0;line-height:0;font-size:0;overflow:hidden;}
 /* ==============================================================
    HEADER
@@ -134,7 +143,7 @@ p {
   height: 70px; }
 
 .is-sticky {
-  background: #252a33;
+  background: #181818;
   opacity: 1; }
 
 .transition {
@@ -153,7 +162,7 @@ p {
 @media (max-width: 992px) {
   .fixed {
     border: none;
-    background: #252a33; } }
+    background: #181818; } }
 
 .dropdown-menu {
   left: auto !important;

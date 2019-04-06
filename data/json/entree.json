@@ -1,0 +1,148 @@
+{
+	"name": "Entrée",
+	"img_url2": "/images/bg/entree.png",
+	"list": [
+		{
+			"id": 301,
+			"name": "Chicken Piccata",
+			"img": "images/entree/1.jpg",
+			"rating": 8.1,
+			"price": 30,
+			"recipe": [
+				"Chicken breasts",
+				"Sea salt",
+				"Freshly ground black pepper",
+				"All-purpose flour",
+				"Extra-virgin olive oil",
+				"Fresh lemon juice",
+				"Chicken stock",
+				"Brined capers",
+				"Fresh parsley"
+			]
+		},
+		{
+			"id": 302,
+			"name": "Veal Parmigiana",
+			"img": "images/entree/2.jpg",
+			"rating": 9.3,
+			"price": 36,
+			"recipe": [
+				"Grated parmesan cheese",
+				"Dry breadcrumbs",
+				"Veal cutlets",
+				"Egg and teaspoons oil",
+				"Onion, pepper",
+				"Italian seasoning",
+				"Tomato sauce",
+				"Mozzarella cheese",
+				"Parmesan cheese"
+			]
+		},
+		{
+			"id": 303,
+			"name": "Salmon Fillet",
+			"img": "images/entree/3.jpg",
+			"rating": 8.4,
+			"price": 39,
+			"recipe": [
+				"Salmon fillet",
+				"Kosher salt",
+				"Freshly ground black pepper",
+				"Lemons, butter and honey",
+				"Garlic",
+				"Thyme leaves",
+				"Dried oregano",
+				"Fresh parsley"
+			]
+		},
+		{
+			"id": 304,
+			"name": "Lobster Fra Diavolo",
+			"img": "images/entree/4.jpg",
+			"rating": 9.7,
+			"price": 45,
+			"recipe": [
+				"Live lobsters",
+				"Butter",
+				"Minced garlic",
+				"Olive oil",
+				"Shallots",
+				"Parsley",
+				"Cognac",
+				"Clam juice",
+				"DeLallo tomato paste"
+			]
+		},
+		{
+			"id": 305,
+			"name": "Eggplant Parmigiana",
+			"img": "images/entree/5.jpg",
+			"rating": 7.6,
+			"price": 30,
+			"recipe": [
+				"Eggplant",
+				"Eggs",
+				"Italian seasoned bread crumbs",
+				"Spaghetti sauce",
+				"Mozzarella cheese",
+				"Dried basil",
+				"Parmesan cheese"
+			]
+		},
+		{
+			"id": 306,
+			"name": "Sausage & Peppers",
+			"img": "images/entree/6.jpg",
+			"rating": 8.1,
+			"price": 30,
+			"recipe": [
+				"Extra-virgin olive oil",
+				"Sweet Italian turkey sausage",
+				"Red bell peppers",
+				"Yellow onions",
+				"Kosher salt",
+				"Freshly ground black pepper",
+				"Dried oregano",
+				"Fresh basil leaves",
+				"Tomato paste"
+			]
+		},
+		{
+			"id": 307,
+			"name": "Steak Pizzaiola",
+			"img": "images/entree/7.jpg",
+			"rating": 8.6,
+			"price": 44,
+			"recipe": [
+				"Boneless sirloin steak",
+				"Kosher salt",
+				"Extra-virgin olive oil",
+				"Cloves garlic",
+				"Onion",
+				"Bell peppers",
+				"Pepperoncini",
+				"Crushed tomatoes",
+				"Dried oregano",
+				"Red pepper flakes"
+			]
+		},
+		{
+			"id": 308,
+			"name": "Twin Broiled Veal Chops",
+			"img": "images/entree/8.jpg",
+			"rating": 8.5,
+			"price": 64,
+			"recipe": [
+				"Veal loin chops",
+				"Garlic cloves",
+				"Rosemary",
+				"Sage",
+				"Pinch salt and pepper",
+				"Virgin olive oil",
+				"Lemon",
+				"Butter",
+				"Steamed vegetables"
+			]
+		}
+	]
+}
