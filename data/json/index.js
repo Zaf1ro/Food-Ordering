@@ -6,7 +6,7 @@ const orders = require('./order');
 
 const findFoodById = function (food_id) {
     let data = undefined;
-    switch ((id / 100) | 0) {
+    switch ((food_id / 100) | 0) {
         case 1: // appetizer
             data = appetizers;
             break;

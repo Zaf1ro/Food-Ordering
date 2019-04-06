@@ -56,6 +56,17 @@ block content
         + recipe-section(food_type, idx, userInfo)
         - idx++;
 
+    .col-lg-4.col-sm-6.col-xs-12.cart-container
+        .cart-basket#cart-basket
+            .dish-list#dish-list
+        .basket-info#basket-info
+            .basket-dishes
+                span.icon-basket-loaded
+                span.badge 0
+            span.price-label Total Price:
+            span.total-price 0
+            button.btn.btn-success#submit-meal-btn Submit
+
 
 block scripts
 script.
