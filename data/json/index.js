@@ -5,6 +5,9 @@ const sides = require('./sides');
 const orders = require('./order');
 
 const findFoodById = function (food_id) {
+    if(typeof food_id === 'string')
+        food_id = parseInt(food_id);
+
     let data = undefined;
     switch ((food_id / 100) | 0) {
         case 1: // appetizer

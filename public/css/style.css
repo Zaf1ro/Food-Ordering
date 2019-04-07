@@ -14,17 +14,9 @@
   background: url(../images/bg/salad.png) no-repeat;
 }
 
-.filler-2 {
-  padding: 2em;
-}
-
-.filler-5 {
-  padding: 5em;
-}
-
-.row {
-  padding-bottom: 15px
-}
+.filler-1 { padding: 1em; }
+.filler-2 { padding: 2em; }
+.filler-3 { padding: 3em; }
 
 .mb-0 {
   font-size: 12rem;
@@ -87,7 +79,7 @@
 
 .cart-container .cart-basket .dish-list {
   position: relative;
-  height: 0;
+  min-height: 0;
   -webkit-transition: height ease-in-out .5s;
   transition: height ease-in-out .5s;
 }
@@ -212,6 +204,7 @@
    GLOBAL STYLES
    ============================================================== */
 body {
+  line-height: 1.2;
   background: url(../images/bg/default.jpg) repeat;
   background-size: contain;
   font-family: 'Roboto', sans-serif; }
@@ -267,9 +260,40 @@ p {
 .dark-bg {
   background: #181818; }
 .tlinks{text-indent:-9999px;height:0;line-height:0;font-size:0;overflow:hidden;}
-/* ==============================================================
-   HEADER
-   ============================================================== */
+
+/*
+==============================================================
+HEADER
+============================================================== */
+#userInfo {
+  display: contents;
+}
+
+#username {
+  display: contents;
+}
+
+#tableID {
+  display: contents;
+}
+
+.between-username-tableID {
+  padding-left: 12px;
+}
+
+#toOrder {
+  display: inherit;
+  padding-bottom: 10px;
+}
+
+#toSignout {
+  display: contents;
+}
+
+.dropdown a {
+  display: contents;
+}
+
 .nav-menu {
   position: absolute;
   z-index: 1;
@@ -318,7 +342,9 @@ p {
   margin: 0 20px 0 0; }
 .nav-item span {
   font-size: 16px;
-  margin: 0 0 0 4px; }
+  margin: 0 0 0 4px;
+  padding-right: 4px;
+  color: #aaaaaa;}
 
 .bg {
   width: 100%;
@@ -477,9 +503,14 @@ p {
 .slider-link span {
   padding: 0 18px; }
 
-/* ==============================================================
-   FIND PLACES
-   ============================================================== */
+/*
+==============================================================
+  FIND PLACES
+============================================================== */
+.slider-menu .row {
+  padding-bottom: 15px;
+}
+
 .styled-heading {
   color: #F5FFFA;
   text-align: center;
@@ -526,10 +557,10 @@ p {
   transform: translateY(-2px);
   -webkit-box-shadow: 0px 3px 40px 0 rgba(206, 205, 205, 0.3);
   box-shadow: 0px 3px 40px 0 rgba(206, 205, 205, 0.3); }
-.featured-place-wrap a {
+.featured-place-wrap .add-btn-wrap p {
   display: block;
   text-decoration: none;
-  color: #FFFFFF;
+  color: #F5FFFA;
 }
 
 .featured-place-wrap img {

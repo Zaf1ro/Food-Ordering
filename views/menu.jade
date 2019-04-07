@@ -5,7 +5,7 @@ mixin recipe-section(food_type, idx, user)
         section.slider.slider-menu.d-flex.align-items-center(id='slider-'+food_type.name)
             .container
                 .row.justify-content-center
-                    - var size = idx === 0 ? '5' : '2'
+                    - var size = idx === 0 ? '3' : '1'
                     .col-md-12(class='filler-'+size)
                     .col-md-6
                         .styled-heading
@@ -37,14 +37,13 @@ mixin recipe-section(food_type, idx, user)
                                                     each val, j in elem.recipe
                                                         li
                                                             p= j+1 + '. ' + val
-                                                .add-btn-wrap
-                                                    a.btn.btn-danger(href='/add?' + 'tableID='+user.tableID+'&'
-                                                    + 'username='+user.username + 'foodID='+elem.id) ADD
+                                                .add-btn-wrap(id=elem.id)
+                                                    p.btn.btn-danger.add-dish-btn ADD
                                 else
                                     break
                         - index += 4
-        - var id_name = 'slider-' + food_type.name;
-        - var img_url = 'url(' + food_type.img_url + ')'
+        // - var id_name = 'slider-' + food_type.name;
+        // - var img_url = 'url(' + food_type.img_url + ')'
         //script.
             // document.getElementById("#{id_name}").style.backgroundImage = "#{img_url}";
 
@@ -69,7 +68,5 @@ block content
 
 
 block scripts
-script.
-    // socket.io
-    ;(function (window, document, $) {
-    }(window, document, $));
+    script(type='text/javascript', src='/js/socket.io.js')
+    script(type='text/javascript', src='/js/meal.js')

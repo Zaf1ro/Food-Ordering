@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const model = require('./data/json/index');
 
 // template
 const path = require('path');
@@ -56,8 +57,29 @@ app.use(function (req, res, next) {
 
 // socket.io
 const io = require('socket.io')(server);
-const meal = io.of('/meal');
+const orderSocket = io.of('/order');
 
-meal.on('connection', socket => {
+counter = 0;
+orderList = {};
+for(i of [1,2,3])
+    orderList[i] = undefined;
 
+// someone add dish to list
+orderSocket.on('connection', socket => {
+    let params = socket.client.conn.request._query;
+    if(!params || !params.tableID)
+        return;
+
+    // join room
+    let tableID = params.tableID;
+    socket.join(tableID);
+
+    // listen on 'add dish' event
+    socket.on('add-dish', dishInfo => {
+        let food = model.findFoodById(dishInfo.food_id);
+        if(food) {
+            console.log(food);
+            orderSocket.to(tableID).emit('add-dish', food);
+        }
+    });
 });
