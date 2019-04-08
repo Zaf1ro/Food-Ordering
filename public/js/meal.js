@@ -5,6 +5,7 @@ const username = $('#username').text();
 const tableID = $('#tableID').text();
 const socket = io('/order?tableID=' + tableID);
 const dishList = $('#dish-list');
+const basketInfo = $('#basket-info');
 
 
 /***************************************************
@@ -15,6 +16,10 @@ const emitAddDishEvent = function (dishInfo) {
     socket.emit('add-dish', dishInfo);
 };
 
+// Send cancel dish request to server
+function emitDelDishEvent(dishInfo) {
+    socket.emit('del-dish', dishInfo);
+}
 
 /***************************************************
  * Listen response from server
@@ -25,7 +30,6 @@ const emitAddDishEvent = function (dishInfo) {
 
     addDishBtn.on('click', function () {
         let food_id = $(this).parent().attr('id');
-        console.log(food_id);
         emitAddDishEvent({
             username: username,
             food_id: food_id,
@@ -37,6 +41,8 @@ const emitAddDishEvent = function (dishInfo) {
         addDishHandler(dishInfo);
     });
 
+    socket.on('add-')
+
 }(window, document, $));
 
 
@@ -44,23 +50,58 @@ const emitAddDishEvent = function (dishInfo) {
  * Handler for menu list
  ***************************************************/
 const addDishHandler = function (dishInfo) {
-    let thisDishLine = dishList.find('.dish-line[dish-id=' + dishInfo.food + ']');
+    let thisDishLine = dishList.find('.dish-line[dish-id=' + dishInfo.id + ']');
     if (thisDishLine.length === 0) {
         dishInfo.num = 1;
-        console.log(dishInfo);
-        dishList.append(genDishLine(dishInfo));
-        // thisDishLine = dishList.append(genDishLine(dishInfo)).find('.dish-line[dish-id=' + dishInfo.dishId + ']');
-        // initMPEvent(thisDishLine);
-        // resizeDishListHeight();
+        let oneLine = dishList.append(genDishLine(dishInfo));
+        addDishLineHandler(oneLine);
+    } else {
+        let dishNumElem = thisDishLine.find('.selected-no'),
+            newDishNum = Number(dishNumElem.val()) + 1,
+            totalPriceElem = thisDishLine.find('.total-price');
+        console.log(Number(Number(dishNumElem.val())));
+        dishNumElem.val(newDishNum);
+        totalPriceElem.text('$' + newDishNum * Number(dishInfo.price));
     }
-    // else {
-    //     let selectedNoEle = thisDishLine.find('.selected-no'),
-    //         selectedNo = Math.floor(Number(selectedNoEle.val())) + 1;
-    //     let thisTotalPriceEle = thisDishLine.find('.total-price');
-    //     selectedNoEle.val(selectedNo);
-    //     thisTotalPriceEle.text('¥' + selectedNo * Number(dishInfo.price));
-    // }
-    // refreshTotalDishesInfo();
+    // resizeDishListHeight();
+    refreshAll();
+};
+
+const addDishLineHandler = function(diskLine) {
+    let dishId = diskLine.attr('dish-id'),
+        dishName = diskLine.attr('dish-name'),
+        dishPrice = Number(diskLine.attr('dish-price'));
+    diskLine.find('.minus-btn').on('click', function() {
+        emitDelDishEvent({
+            username: username,
+            dishId: dishId,
+            dishName: dishName,
+            price: dishPrice
+        });
+    });
+    diskLine.find('.plus-btn').on('click', function() {
+        emitAddDishEvent({
+            username: username,
+            dishId: dishId,
+            dishName: dishName,
+            price: dishPrice
+        });
+    });
+};
+
+const refreshAll = function () {
+    let dishLineArr = dishList.find('.dish-line').toArray();
+    let totalNo = 0;
+    let totalPrice = 0;
+    $.each(dishLineArr, function(i, v) {
+        let dishNum = Number($(v).find('.selected-no').val());
+        let dishPrice = Number($(v).attr('dish-price'));
+        totalNo += dishNum;
+        totalPrice += dishNum * dishPrice;
+    });
+    totalNo = totalNo > 99 ? '99+' : totalNo;
+    basketInfo.find('.badge').text(totalNo);
+    basketInfo.find('.total-price').text(totalPrice);
 };
 
 

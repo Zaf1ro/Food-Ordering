@@ -78,7 +78,6 @@ orderSocket.on('connection', socket => {
     socket.on('add-dish', dishInfo => {
         let food = model.findFoodById(dishInfo.food_id);
         if(food) {
-            console.log(food);
             orderSocket.to(tableID).emit('add-dish', food);
         }
     });
