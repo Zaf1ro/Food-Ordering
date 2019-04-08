@@ -17,9 +17,10 @@ const emitAddDishEvent = function (dishInfo) {
 };
 
 // Send cancel dish request to server
-function emitDelDishEvent(dishInfo) {
+const emitDelDishEvent = function (dishInfo) {
     socket.emit('del-dish', dishInfo);
-}
+};
+
 
 /***************************************************
  * Listen response from server
@@ -41,7 +42,9 @@ function emitDelDishEvent(dishInfo) {
         addDishHandler(dishInfo);
     });
 
-    socket.on('add-')
+    socket.on('del-dish', function (dishInfo) {
+        delDishHandler(dishInfo);
+    });
 
 }(window, document, $));
 
@@ -50,16 +53,16 @@ function emitDelDishEvent(dishInfo) {
  * Handler for menu list
  ***************************************************/
 const addDishHandler = function (dishInfo) {
+    console.log("Add one dish...");
     let thisDishLine = dishList.find('.dish-line[dish-id=' + dishInfo.id + ']');
     if (thisDishLine.length === 0) {
         dishInfo.num = 1;
-        let oneLine = dishList.append(genDishLine(dishInfo));
-        addDishLineHandler(oneLine);
+        let oneLine = dishList.append(genDishLine(dishInfo)).find('.dish-line[dish-id=' + dishInfo.id + ']');
+        addLineHandler(oneLine);
     } else {
         let dishNumElem = thisDishLine.find('.selected-no'),
             newDishNum = Number(dishNumElem.val()) + 1,
             totalPriceElem = thisDishLine.find('.total-price');
-        console.log(Number(Number(dishNumElem.val())));
         dishNumElem.val(newDishNum);
         totalPriceElem.text('$' + newDishNum * Number(dishInfo.price));
     }
@@ -67,28 +70,44 @@ const addDishHandler = function (dishInfo) {
     refreshAll();
 };
 
-const addDishLineHandler = function(diskLine) {
-    let dishId = diskLine.attr('dish-id'),
-        dishName = diskLine.attr('dish-name'),
-        dishPrice = Number(diskLine.attr('dish-price'));
+const delDishHandler = function(dishInfo) {
+    console.log("Delete one dish...");
+    let thisDishLine = dishList.find('.dish-line[dish-id=' + dishInfo.id + ']');
+    if (thisDishLine.length > 0) {
+        let dishNumElem = thisDishLine.find('.selected-no'),
+            totalPriceElem = thisDishLine.find('.total-price'),
+            newDishNum = Number(dishNumElem.val()) - 1;
+        if (newDishNum > 0) {
+            dishNumElem.val(newDishNum);
+            totalPriceElem.text('$' + newDishNum * dishInfo.price);
+        } else {
+            thisDishLine.remove();
+            // resizeDishListHeight();
+        }
+        refreshAll();
+    }
+};
+
+const addLineHandler = function(diskLine) {
+    let food_id = diskLine.attr('dish-id');
     diskLine.find('.minus-btn').on('click', function() {
         emitDelDishEvent({
             username: username,
-            dishId: dishId,
-            dishName: dishName,
-            price: dishPrice
+            food_id: food_id
         });
     });
     diskLine.find('.plus-btn').on('click', function() {
         emitAddDishEvent({
             username: username,
-            dishId: dishId,
-            dishName: dishName,
-            price: dishPrice
+            food_id: food_id
         });
     });
 };
 
+
+/***************************************************
+ * Other functions
+ ***************************************************/
 const refreshAll = function () {
     let dishLineArr = dishList.find('.dish-line').toArray();
     let totalNo = 0;
@@ -104,10 +123,6 @@ const refreshAll = function () {
     basketInfo.find('.total-price').text(totalPrice);
 };
 
-
-/***************************************************
- * Generate static HTML block
- ***************************************************/
 const genDishLine = function (dishInfo) {
     if (typeof dishInfo.num !== 'number')
         dishInfo.num = 1;

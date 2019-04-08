@@ -81,4 +81,11 @@ orderSocket.on('connection', socket => {
             orderSocket.to(tableID).emit('add-dish', food);
         }
     });
+
+    socket.on('del-dish', dishInfo => {
+        let food = model.findFoodById(dishInfo.food_id);
+        if(food) {
+            orderSocket.to(tableID).emit('del-dish', food);
+        }
+    });
 });
