@@ -75,6 +75,7 @@
   background-color: #fff;
   -webkit-transition: top ease-in-out .3s;
   transition: top ease-in-out .3s;
+  box-shadow: 1px 2px 20px #000;
 }
 
 .cart-container .cart-basket .dish-list {
@@ -199,6 +200,35 @@
   color: #FFFFFF;
   background-color: #46cd38 !important;
 }
+
+/* notification */
+.notify {
+  position: relative;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  width: auto;
+  user-select: none;
+  padding: 6px 12px 6px 12px;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: left;
+  background-color: #181818;
+  border-left: inherit 4px solid;
+  border-radius:3px;
+  /*box-shadow:0 7px 7px 0 rgba(0,0,0,.15);*/
+  color: #383838;
+  animation: message-fade-in 1s ease-in-out;
+}
+
+.notify.notify-danger span{
+  color: #d43f3a}
+.notify.notify-success span{
+  color: #4cae4c}
+.notify.notify-info span{
+  color: #46b8da}
+.notify.notify-warning span{
+  color: #eea236}
 
 /* ==============================================================
    GLOBAL STYLES
@@ -375,7 +405,7 @@ HEADER
 .dropdown-menu {
   left: auto !important;
   right: 0 !important;
-  background: #030303; }
+  background: #181818; }
 
 .dropdown-item {
   color: #aaaaaa;
