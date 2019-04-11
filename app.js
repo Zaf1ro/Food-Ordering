@@ -55,30 +55,100 @@ app.use(function (req, res, next) {
     return res.status(404).render('404');
 });
 
+// Class Order
+class Order {
+    constructor(orderID) {
+        this.orderID = orderID;
+        this.dishes = {};
+        this.nDish = 0;
+    }
+
+    getOrderID() {
+        return this.orderID;
+    }
+
+    getDishes() {
+        return this.dishes;
+    }
+
+    addOneDish(id) {
+        if(this.dishes[id]) {
+            this.dishes[id]++;
+        } else {
+            this.dishes[id] = 1;
+        }
+        ++this.nDish;
+        return true;
+    }
+
+    removeOneDish(id) {
+        if(!this.dishes[id])
+            return false;
+
+        if(this.dishes[id] === 1) {
+            delete this.dishes[id];
+        } else {
+            this.dishes[id] -= 1;
+        }
+        --this.nDish;
+        return true;
+    }
+
+    removeAllDish(id) {
+        for(let key in this.dishes) {
+            delete this.dishes[key];
+        }
+        this.nDish = 0;
+    }
+}
+
 // socket.io
 const io = require('socket.io')(server);
 const orderSocket = io.of('/order');
 
-counter = 0;
-orderList = {};
-for(i of [1,2,3])
-    orderList[i] = undefined;
+const numOfTable = 3;
+const orderList = [];
+for(let i = 0; i < numOfTable; ++i) {
+    orderList.push(new Order());
+}
 
 // someone add dish to list
 orderSocket.on('connection', socket => {
     let params = socket.client.conn.request._query;
-    if(!params || !params.tableID)
+    // check tableID and username
+    if(!params || !params.tableID || !params.username)
+        return;
+
+    let tableID = params.tableID,
+        username = params.username;
+    // check tableID
+    if(tableID <= 0 || tableID >= numOfTable)
         return;
 
     // join room
-    let tableID = params.tableID;
     socket.join(tableID);
+    // get current order
+
+    let thisOrder = orderList[tableID - 1];
+
+    if(thisOrder.nDish > 0) {
+        console.log("Send Order!!!");
+        let dishList = [];
+        let allDishes = thisOrder.getDishes();
+        for(let dish_id in allDishes) {
+            let dishInfo = model.findFoodById(dish_id);
+            dishInfo.num = allDishes[dish_id];
+            dishList.push(dishInfo);
+        }
+        orderSocket.emit('selected-dishes', dishList);
+    }
 
     // listen on 'add dish' event
     socket.on('add-dish', dishInfo => {
         let food = model.findFoodById(dishInfo.food_id);
         if(food) {
             orderSocket.to(tableID).emit('add-dish', food);
+            thisOrder.addOneDish(food.id);
         }
     });
 
@@ -86,6 +156,7 @@ orderSocket.on('connection', socket => {
         let food = model.findFoodById(dishInfo.food_id);
         if(food) {
             orderSocket.to(tableID).emit('del-dish', food);
+            thisOrder.removeOneDish(food.id);
         }
     });
 });

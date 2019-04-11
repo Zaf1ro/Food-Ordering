@@ -3,7 +3,7 @@
  ***************************************************/
 const username = $('#username').text();
 const tableID = $('#tableID').text();
-const socket = io('/order?tableID=' + tableID);
+const socket = io('/order?tableID=' + tableID + '&username=' + username);
 const dishList = $('#dish-list');
 const basketInfo = $('#basket-info');
 
@@ -37,13 +37,23 @@ const emitDelDishEvent = function (dishInfo) {
         });
     });
 
-    // Listen Add Dish event from customer
+    // Listen Add One Dish event from customer
     socket.on('add-dish', function (dishInfo) {
+        console.log("Add one dish...");
+        dishInfo.num = 1;
         addDishHandler(dishInfo);
     });
 
     socket.on('del-dish', function (dishInfo) {
+        console.log("Delete one dish...");
         delDishHandler(dishInfo);
+    });
+
+    socket.on('selected-dishes', function(dishList) {
+        console.log("Add old dishes...");
+        for(let dishInfo of dishList) {
+            addDishHandler(dishInfo);
+        }
     });
 
 }(window, document, $));
@@ -53,10 +63,8 @@ const emitDelDishEvent = function (dishInfo) {
  * Handler for menu list
  ***************************************************/
 const addDishHandler = function (dishInfo) {
-    console.log("Add one dish...");
     let thisDishLine = dishList.find('.dish-line[dish-id=' + dishInfo.id + ']');
     if (thisDishLine.length === 0) {
-        dishInfo.num = 1;
         let oneLine = dishList.append(genDishLine(dishInfo)).find('.dish-line[dish-id=' + dishInfo.id + ']');
         addLineHandler(oneLine);
     } else {
@@ -71,7 +79,6 @@ const addDishHandler = function (dishInfo) {
 };
 
 const delDishHandler = function(dishInfo) {
-    console.log("Delete one dish...");
     let thisDishLine = dishList.find('.dish-line[dish-id=' + dishInfo.id + ']');
     if (thisDishLine.length > 0) {
         let dishNumElem = thisDishLine.find('.selected-no'),

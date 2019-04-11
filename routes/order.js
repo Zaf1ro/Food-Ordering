@@ -3,46 +3,6 @@ const router = express.Router();
 const utils = require('./utils');
 const model = require('../data/json/index');
 
-class Order {
-    constructor(orderID) {
-        this.orderID = orderID;
-        this.dishes = {};
-    }
-
-    getOrderID() {
-        return this.orderID;
-    }
-
-    getDishes() {
-        return this.dishes;
-    }
-
-    addOneDish(id) {
-        if(this.dishes[id]) {
-            this.dishes[id]++;
-        } else {
-            this.dishes[id] = 1;
-        }
-        return true;
-    }
-
-    removeOneDish(id) {
-        if(!this.dishes[id]) {
-            return false;
-        }
-        if(this.dishes[id] === 1) {
-            this.removeAllDish(id);
-        } else {
-            this.dishes[id] -= 1;
-        }
-        return true;
-    }
-
-    removeAllDish(id) {
-        return this.dishes.delete(id);
-    }
-}
-
 router.get('/order', function (req, res) {
     utils.debugPrint('Order Get:', req.session.user);
     if (!utils.isUserLogin(req, res)) {
