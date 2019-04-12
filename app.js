@@ -113,8 +113,8 @@ for(let i = 0; i < numOfTable; ++i) {
 }
 
 // someone add dish to list
-orderSocket.on('connection', socket => {
-    let params = socket.client.conn.request._query;
+orderSocket.on('connection', client => {
+    let params = client.client.conn.request._query;
     // check tableID and username
     if(!params || !params.tableID || !params.username)
         return;
@@ -126,11 +126,12 @@ orderSocket.on('connection', socket => {
         return;
 
     // join room
-    socket.join(tableID);
-    // get current order
+    client.join(tableID);
 
+    // get current order
     let thisOrder = orderList[tableID - 1];
 
+    // get dishes which are ordered before
     if(thisOrder.nDish > 0) {
         console.log("Send Order!!!");
         let dishList = [];
@@ -140,11 +141,11 @@ orderSocket.on('connection', socket => {
             dishInfo.num = allDishes[dish_id];
             dishList.push(dishInfo);
         }
-        orderSocket.emit('selected-dishes', dishList);
+        orderSocket.to(client.id).emit('selected-dishes', dishList);
     }
 
-    // listen on 'add dish' event
-    socket.on('add-dish', dishInfo => {
+    // listen on 'add one dish' event
+    client.on('add-dish', dishInfo => {
         let food = model.findFoodById(dishInfo.food_id);
         if(food) {
             orderSocket.to(tableID).emit('add-dish', food);
@@ -152,7 +153,8 @@ orderSocket.on('connection', socket => {
         }
     });
 
-    socket.on('del-dish', dishInfo => {
+    // listen on 'delete one dish' event
+    client.on('del-dish', dishInfo => {
         let food = model.findFoodById(dishInfo.food_id);
         if(food) {
             orderSocket.to(tableID).emit('del-dish', food);
