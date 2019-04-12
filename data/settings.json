@@ -1,0 +1,9 @@
+{
+	"mongoConfig": {
+		"serverUrl": "mongodb://localhost:27017/",
+		"dbName": "food",
+		"HOST": "127.0.0.1",
+		"PORT": 27017
+	},
+	"sessionSecret": "769073c9dc4023b33715e788690be073"
+}

@@ -1,3 +1,7 @@
+// settings
+const settings = require('./data/settings');
+
+// express
 const express = require('express');
 const app = express();
 const model = require('./data/json/index');
@@ -13,10 +17,6 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// cookie
-const cookieParser = require('cookie-parser');
-app.use(cookieParser('HASH_CODE'));
-
 // app starts
 const PORT = process.env.NODE_ENV === 'production' ? 80 : 3000;
 const server = app.listen(PORT, () => {
@@ -28,7 +28,7 @@ const session = require('express-session');
 app.use(session({
     cookie: { maxAge: 1800000, secure: false },
     errorCode: 0,
-    secret: 'HASH_CODE', // TODO: add a meaningful string
+    secret: settings.sessionSecret,
     resave: true,
     saveUninitialized: true,
     // store: mongoStore
