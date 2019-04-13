@@ -11,7 +11,7 @@ const registerUser = async function (username, tableID) {
 };
 
 router.post('/user/register', function (req, res) {
-    if (!utils.isUserLogin(req)) {
+    if (!utils.isUserLogin(req)) { // new user to register
         registerUser(req.body.username, req.body.tableID).then((result) => {
             if (!result) {
                 console.log('username duplicate...');
@@ -27,6 +27,8 @@ router.post('/user/register', function (req, res) {
         .catch((err) => {
             console.error(err);
         })
+    } else { // user already logged in
+        res.redirect('/menu');
     }
 });
 
