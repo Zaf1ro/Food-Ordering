@@ -1,5 +1,5 @@
-const mongoCollections = require("./collections");;
-const userCollection = mongoCollections.user;
+const mongoCollections = require("./collections");
+const user = mongoCollections.user;
 const ObjectID = require("mongodb").ObjectID;
 
 const insertUser = async function (username, tableID) {
@@ -10,8 +10,8 @@ const insertUser = async function (username, tableID) {
     if(typeof tableID === 'string')
         tableID = parseInt(tableID);
 
-    const user = await userCollection();
-    let res = await user.insertOne({
+    const userCollection = await user();
+    let res = await userCollection.insertOne({
         username: username,
         tableID: tableID
     });
@@ -20,7 +20,7 @@ const insertUser = async function (username, tableID) {
         console.log("Cannot insert an new user...");
         return undefined;
     }
-    return user.findOne(res.insertedId);
+    return userCollection.findOne(res.insertedId);
 };
 
 const findUserByID = async function (userID) {
@@ -29,8 +29,8 @@ const findUserByID = async function (userID) {
     if (typeof userID === 'string')
         userID = ObjectID(userID);
 
-    const user = await userCollection();
-    return await user.findOne({
+    const userCollection = await user();
+    return await userCollection.findOne({
         _id: userID
     }, function (err, res) {
         if (err) {
@@ -49,8 +49,8 @@ const findUserByName = async function (username, tableID) {
     if (typeof tableID === 'string')
         tableID = parseInt(tableID);
 
-    const user = await userCollection();
-    const res = await user.findOne({
+    const userCollection = await user();
+    const res = await userCollection.findOne({
         username: username,
         tableID: tableID
     });

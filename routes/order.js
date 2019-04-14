@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const utils = require('./utils');
-const model = require('../data/json/index');
+const model = require('../data/json/order');
 
 router.get('/order', function (req, res) {
     utils.debugPrint('Order Get:', req.session.user);

@@ -1,21 +1,25 @@
 const express = require('express');
 const router = express.Router();
 const utils = require('./utils');
-const model = require('../data/json/index');
+const menuModel = require('../data/menu');
+const debugPrint = utils.debugPrint;
+const asyncMiddleware = utils.asyncMiddleware;
 
 
-router.get('/menu', function (req, res) {
-    utils.debugPrint('Menu Get:', req.session.user);
+router.get('/menu', asyncMiddleware(async (req, res) => {
+    debugPrint('Menu Get:', req.session.user);
     if (!utils.isUserLogin(req, res)) {
         res.redirect('/');
         return;
     }
 
+    let allMenu = await menuModel.getAllMenuItems();
+
     res.render('menu', {
         title: 'Menu',
-        recipe: model.recipe,
+        menu: allMenu,
         nav: 'menu'
     });
-});
+}));
 
 module.exports = router;

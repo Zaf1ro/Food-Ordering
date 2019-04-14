@@ -1,54 +1,51 @@
 extends template-page
 
-mixin recipe-section(food_type, idx, user)
-    if food_type
-        section.slider.slider-menu.d-flex.align-items-center(id='slider-' + food_type.name)
+mixin menu-section(foodList, idx)
+    if foodList && foodList.length > 0
+        section.slider.slider-menu.d-flex.align-items-center(id='slider-' + foodList[0].category)
             .container
                 .row.justify-content-center
                     - var size = idx === 0 ? '3' : '1'
                     .col-md-12(class='filler-' + size)
                     .col-md-6
                         .styled-heading
-                            h3=food_type.name
-                - var food_list = food_type.list;
-                if food_list && food_list.length > 0
-                    - var index = 0
-                    while index < food_list.length
-                        .row
-                            each i in [0, 1, 2, 3]
-                                if index + i < food_list.length
-                                    - var elem = food_list[index + i]
-                                    .col-md-3.featured-responsive
-                                        .dish-info-wrap
-                                            img.img-fluid(src=elem.img, alt='#')
-                                            if elem.rating > 9.0
-                                                span.dish-rating-s #{elem.rating}
-                                            else if elem.rating > 8.0
-                                                span.dish-rating-a #{elem.rating}
-                                            else if elem.rating > 7.0
-                                                span.dish-rating-b #{elem.rating}
-                                            else
-                                                span.dish-rating-c #{elem.rating}
-                                            .dish-title-box
-                                                h6=elem.name
-                                                p='Price: $' + elem.price
-                                                ul
-                                                    p Recipe:
-                                                    each val, j in elem.recipe
-                                                        li
-                                                            p= j+1 + '. ' + val
-                                                .add-btn-wrap(id=elem.id)
-                                                    p.btn.btn-danger.add-dish-btn ADD
-                                else
-                                    break
-                        - index += 4
+                            h3=foodList[0].category
+                - var index = 0
+                while index < foodList.length
+                    .row
+                        each i in [0, 1, 2, 3]
+                            if index + i < foodList.length
+                                - var elem = foodList[index + i]
+                                .col-md-3.featured-responsive
+                                    .dish-info-wrap
+                                        img.img-fluid(src=elem.img_url, alt='#')
+                                        if elem.rating > 9.0
+                                            span.dish-rating-s #{elem.rating}
+                                        else if elem.rating > 8.0
+                                            span.dish-rating-a #{elem.rating}
+                                        else if elem.rating > 7.0
+                                            span.dish-rating-b #{elem.rating}
+                                        else
+                                            span.dish-rating-c #{elem.rating}
+                                        .dish-title-box
+                                            h6=elem.food_name
+                                            p='Price: $' + elem.price
+                                            ul
+                                                p Recipe:
+                                                each val, j in elem.recipe
+                                                    li
+                                                        p= j+1 + '. ' + val
+                                            .add-btn-wrap(id=elem._id)
+                                                p.btn.btn-danger.add-dish-btn ADD
+                            else
+                                break
+                    - index += 4
 
 
 block content
     - var idx = 0;
-    - var userInfo = user;
-    each food_type in recipe
-        + recipe-section(food_type, idx, userInfo)
+    each obj in menu
+        + menu-section(obj.foodList, idx)
         - idx++;
 
     .col-lg-4.col-sm-6.col-xs-12.cart-container

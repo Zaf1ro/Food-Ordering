@@ -4,7 +4,6 @@ const settings = require('./data/settings');
 // express
 const express = require('express');
 const app = express();
-const model = require('./data/json/index');
 
 // template
 const path = require('path');
@@ -53,6 +52,15 @@ app.use(router);
 // 404
 app.use(function (req, res, next) {
     return res.status(404).render('404');
+});
+
+// init menu in mongodb
+const menuModel = require('./data/menu');
+menuModel.initMenu().then((res) => {
+    if(!res)
+        console.log('Fail to init menu database');
+}).catch((err) => {
+    console.log(err);
 });
 
 // Class Order
@@ -137,7 +145,7 @@ orderSocket.on('connection', client => {
         let dishList = [];
         let allDishes = thisOrder.getDishes();
         for(let dish_id in allDishes) {
-            let dishInfo = model.findFoodById(dish_id);
+            let dishInfo = menuModel.findMenuItemByID(dish_id);
             dishInfo.num = allDishes[dish_id];
             dishList.push(dishInfo);
         }
@@ -146,7 +154,7 @@ orderSocket.on('connection', client => {
 
     // listen on 'add one dish' event
     client.on('add-dish', dishInfo => {
-        let food = model.findFoodById(dishInfo.food_id);
+        let food = model.findMenuItemByID(dishInfo.food_id);
         if(food) {
             orderSocket.to(tableID).emit('add-dish', food);
             thisOrder.addOneDish(food.id);

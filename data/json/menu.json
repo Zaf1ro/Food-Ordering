@@ -1,0 +1,326 @@
+[
+	{
+		"food_name": "Stuffed Mushrooms",
+		"img_url": "images/appetizer/App-1.png",
+		"category": "appetizers",
+		"rating": 6.5,
+		"price": 20,
+		"recipe": [
+			"Baby mushrooms",
+			"Butter",
+			"Garlic",
+			"Breadcrumbs",
+			"Kosher salt",
+			"Ground black pepper"
+		]
+	},
+	{
+		"food_name": "Peppers & Onions",
+		"img_url": "images/appetizer/App-2.jpg",
+		"category": "appetizers",
+		"rating": 9.2,
+		"price": 15,
+		"recipe": [
+			"Extra-virgin olive oil",
+			"Peppers",
+			"Sweet onions",
+			"Sea salt"
+		]
+	},
+	{
+		"food_name": "Baked Clams",
+		"img_url": "images/appetizer/App-3.jpg",
+		"category": "appetizers",
+		"rating": 8.1,
+		"price": 26,
+		"recipe": [
+			"Littleneck clams",
+			"Plain bread crumbs",
+			"Fresh oregano leaves",
+			"Red pepper flakes",
+			"Kosher salt",
+			"Chicken stock"
+		]
+	},
+	{
+		"food_name": "Sautéed Shrimp",
+		"img_url": "images/appetizer/App-4.jpg",
+		"category": "appetizers",
+		"rating": 7.5,
+		"price": 29,
+		"recipe": [
+			"Large or extra-large shrimp",
+			"Crushed red pepper flakes",
+			"Kosher salt",
+			"Dry white wine",
+			"Garlic cloves",
+			"Extra-virgin olive oil"
+		]
+	},
+	{
+		"food_name": "Calamari Fritti",
+		"img_url": "images/appetizer/App-5.jpg",
+		"category": "appetizers",
+		"rating": 7.6,
+		"price": 18,
+		"recipe": [
+			"Cleaned squid",
+			"All-purpose flour",
+			"Stone-ground yellow cornmeal",
+			"Salt, preferably kosher",
+			"Freshly ground black pepper",
+			"Peanut oil"
+		]
+	},
+	{
+		"food_name": "Mussels",
+		"img_url": "images/appetizer/App-6.jpg",
+		"category": "appetizers",
+		"rating": 8.7,
+		"price": 25,
+		"recipe": [
+			"Large shallots",
+			"Garlic cloves",
+			"Sea salt",
+			"Maine mussels",
+			"butter"
+		]
+	},
+	{
+		"food_name": "Chicken Piccata",
+		"img_url": "images/entree/1.jpg",
+		"category": "entree",
+		"rating": 8.1,
+		"price": 30,
+		"recipe": [
+			"Chicken breasts",
+			"Sea salt",
+			"Freshly ground black pepper",
+			"All-purpose flour",
+			"Extra-virgin olive oil",
+			"Fresh lemon juice",
+			"Chicken stock",
+			"Brined capers",
+			"Fresh parsley"
+		]
+	},
+	{
+		"food_name": "Veal Parmigiana",
+		"img_url": "images/entree/2.jpg",
+		"category": "entree",
+		"rating": 9.3,
+		"price": 36,
+		"recipe": [
+			"Grated parmesan cheese",
+			"Dry breadcrumbs",
+			"Veal cutlets",
+			"Egg and teaspoons oil",
+			"Onion, pepper",
+			"Italian seasoning",
+			"Tomato sauce",
+			"Mozzarella cheese",
+			"Parmesan cheese"
+		]
+	},
+	{
+		"food_name": "Salmon Fillet",
+		"img_url": "images/entree/3.jpg",
+		"category": "entree",
+		"rating": 8.4,
+		"price": 39,
+		"recipe": [
+			"Salmon fillet",
+			"Kosher salt",
+			"Freshly ground black pepper",
+			"Lemons, butter and honey",
+			"Garlic",
+			"Thyme leaves",
+			"Dried oregano",
+			"Fresh parsley"
+		]
+	},
+	{
+		"food_name": "Lobster Fra Diavolo",
+		"img_url": "images/entree/4.jpg",
+		"category": "entree",
+		"rating": 9.7,
+		"price": 45,
+		"recipe": [
+			"Live lobsters",
+			"Butter",
+			"Minced garlic",
+			"Olive oil",
+			"Shallots",
+			"Parsley",
+			"Cognac",
+			"Clam juice",
+			"DeLallo tomato paste"
+		]
+	},
+	{
+		"food_name": "Eggplant Parmigiana",
+		"img_url": "images/entree/5.jpg",
+		"category": "entree",
+		"rating": 7.6,
+		"price": 30,
+		"recipe": [
+			"Eggplant",
+			"Eggs",
+			"Italian seasoned bread crumbs",
+			"Spaghetti sauce",
+			"Mozzarella cheese",
+			"Dried basil",
+			"Parmesan cheese"
+		]
+	},
+	{
+		"food_name": "Sausage & Peppers",
+		"img_url": "images/entree/6.jpg",
+		"category": "entree",
+		"rating": 8.1,
+		"price": 30,
+		"recipe": [
+			"Extra-virgin olive oil",
+			"Sweet Italian turkey sausage",
+			"Red bell peppers",
+			"Yellow onions",
+			"Kosher salt",
+			"Freshly ground black pepper",
+			"Dried oregano",
+			"Fresh basil leaves",
+			"Tomato paste"
+		]
+	},
+	{
+		"food_name": "Steak Pizzaiola",
+		"img_url": "images/entree/7.jpg",
+		"category": "entree",
+		"rating": 8.6,
+		"price": 44,
+		"recipe": [
+			"Boneless sirloin steak",
+			"Kosher salt",
+			"Extra-virgin olive oil",
+			"Cloves garlic",
+			"Onion",
+			"Bell peppers",
+			"Pepperoncini",
+			"Crushed tomatoes",
+			"Dried oregano",
+			"Red pepper flakes"
+		]
+	},
+	{
+		"food_name": "Twin Broiled Veal Chops",
+		"img_url": "images/entree/8.jpg",
+		"category": "entree",
+		"rating": 8.5,
+		"price": 64,
+		"recipe": [
+			"Veal loin chops",
+			"Garlic cloves",
+			"Rosemary",
+			"Sage",
+			"Pinch salt and pepper",
+			"Virgin olive oil",
+			"Lemon",
+			"Butter",
+			"Steamed vegetables"
+		]
+	},
+	{
+		"food_name": "Caesar",
+		"img_url": "images/salad/Sal-1.jpeg",
+		"category": "salad",
+		"rating": 9.5,
+		"price": 23,
+		"recipe": [
+			"Anchovy fillets",
+			"Garlic clove",
+			"Kosher salt",
+			"Egg yolks",
+			"Fresh lemon juice",
+			"Dijon mustard",
+			"Olive oil",
+			"Finely grated Parmesan",
+			"Freshly ground black pepper"
+		]
+	},
+	{
+		"food_name": "Tri Colore",
+		"img_url": "images/salad/Sal-2.jpg",
+		"category": "salad",
+		"rating": 8.7,
+		"price": 22,
+		"recipe": [
+			"Arugula",
+			"Belgian endive",
+			"Radicchio",
+			"Lemon Vinaigrette",
+			"Parmigiano-Reggiano"
+		]
+	},
+	{
+		"food_name": "Roquefort",
+		"img_url": "images/salad/Sal-3.jpg",
+		"category": "salad",
+		"rating": 9.1,
+		"price": 24,
+		"recipe": [
+			"Torn salad greens",
+			"Ripe pears",
+			"Thinly sliced green onions",
+			"Crumbled blue cheese",
+			"Cider vinegar",
+			"Slivered almonds, toasted",
+			"Olive oil",
+			"Dijon mustard"
+		]
+	},
+	{
+		"food_name": "Roasted Potatoes",
+		"img_url": "/images/sides/1.jpg",
+		"category": "sides",
+		"rating": 6.7,
+		"price": 18,
+		"recipe": [
+			"Vegetable oil",
+			"Sea salt",
+			"Freshly ground black pepper",
+			"Dried rosemary",
+			"Potatoes",
+			"Garlic",
+			"parsley"
+		]
+	},
+	{
+		"food_name": "Sausage or Meatballs",
+		"img_url": "/images/sides/2.jpg",
+		"category": "sides",
+		"rating": 8.0,
+		"price": 22,
+		"recipe": [
+			"Leahy's Bulk Italian Sausage",
+			"Egg",
+			"Bread Crumbs",
+			"Onion",
+			"Garlic"
+		]
+	},
+	{
+		"food_name": "Escarole & Beans",
+		"img_url": "/images/sides/3.jpg",
+		"category": "sides",
+		"rating": 8.3,
+		"price": 15,
+		"recipe": [
+			"Olive oil",
+			"Escarole",
+			"Salt and pepper",
+			"Red pepper flakes",
+			"Clove garlic",
+			"Cannellini beans",
+			"Fresh parsley"
+		]
+	}
+]

@@ -14,7 +14,7 @@ const getColByName = (colName) => {
 };
 
 
-/* Now, you can list your collections here: */
 module.exports = {
-    user: getColByName('user')
+    user: getColByName('user'),
+    menu: getColByName('menu')
 };
