@@ -1,4 +1,4 @@
-extends template-with-header
+extends template-page
 
 mixin recipe-section(food_type, idx, user)
     if food_type
@@ -19,17 +19,17 @@ mixin recipe-section(food_type, idx, user)
                                 if index + i < food_list.length
                                     - var elem = food_list[index + i]
                                     .col-md-3.featured-responsive
-                                        .featured-place-wrap
+                                        .dish-info-wrap
                                             img.img-fluid(src=elem.img, alt='#')
                                             if elem.rating > 9.0
-                                                span.featured-rating-s #{elem.rating}
+                                                span.dish-rating-s #{elem.rating}
                                             else if elem.rating > 8.0
-                                                span.featured-rating-a #{elem.rating}
+                                                span.dish-rating-a #{elem.rating}
                                             else if elem.rating > 7.0
-                                                span.featured-rating-b #{elem.rating}
+                                                span.dish-rating-b #{elem.rating}
                                             else
-                                                span.featured-rating-c #{elem.rating}
-                                            .featured-title-box
+                                                span.dish-rating-c #{elem.rating}
+                                            .dish-title-box
                                                 h6=elem.name
                                                 p='Price: $' + elem.price
                                                 ul
@@ -63,6 +63,10 @@ block content
             button.btn.btn-success#submit-meal-btn Submit
 
 
+block styles
+    link(rel='stylesheet', href='/css/menu.css')
+
+
 block scripts
-    script(type='text/javascript', src='/js/socket.io.js')
-    script(type='text/javascript', src='/js/meal.js')
+    script(type='text/javascript', src='/lib/socket.io-1.4.8.min.js')
+    script(type='text/javascript', src='/js/menu.js')

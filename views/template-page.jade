@@ -3,20 +3,17 @@ html
     head
         title= title
         meta(name='viewport', content='width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no')
-        link(rel='shortcut icon', type='image/ico', href='images/favicon.ico')
-        link(rel='stylesheet', href='/css/bootstrap.min.css')
-        // Google Fonts
+        // link(rel='shortcut icon', type='image/ico', href='images/favicon.ico')
+
+        // Library
+        link(rel='stylesheet', href='/lib/bootstrap-4.3.1.min.css')
+        link(rel='stylesheet', href='/lib/simple-line-icons.css')
         link(href='https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900', rel='stylesheet')
-        // Simple line Icon
-        link(rel='stylesheet', href='/css/simple-line-icons.css')
-        // Themify Icon
-        link(rel='stylesheet', href='/css/themify-icons.css')
-        // Swipper Slider
-        link(rel='stylesheet', href='/css/swiper.min.css')
-        // Magnific Popup CSS
-        link(rel='stylesheet', href='/css/magnific-popup.css')
-        // Main CSS
+
+        // Stylesheet
         link(rel='stylesheet', href='/css/style.css')
+        link(rel='stylesheet', href='/css/header-footer.css')
+
         block styles
 
     body
@@ -25,13 +22,12 @@ html
         include templates/footer
 
 
-script(src='js/jquery-3.2.1.min.js')
-script(src='js/popper.min.js')
-script(src='js/bootstrap.min.js')
-// Magnific popup JS
-script(src='js/jquery.magnific-popup.js')
-// Swipper Slider JS
-script(src='js/swiper.min.js')
+// Library
+script(src='lib/jquery-3.4.0.min.js')
+script(src='lib/bootstrap-4.3.1.min.js')
+script(src='lib/popper.min.js')
+
+// stick header on page
 script.
     $(window).scroll(function () {
         // 100 = The point you would like to fade the nav in.
@@ -41,4 +37,7 @@ script.
             $('.fixed').removeClass('is-sticky');
         };
     });
+
+
+// Javascript
 block scripts

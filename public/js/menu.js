@@ -58,9 +58,9 @@ const emitDelDishEvent = function (dishInfo) {
         delDishHandler(dishInfo);
     });
 
-    socket.on('selected-dishes', function(dishList) {
+    socket.on('selected-dishes', function (dishList) {
         console.log("Add old dishes...");
-        for(let dishInfo of dishList) {
+        for (let dishInfo of dishList) {
             addDishHandler(dishInfo);
         }
     });
@@ -87,7 +87,7 @@ const addDishHandler = function (dishInfo) {
     refreshAll();
 };
 
-const delDishHandler = function(dishInfo) {
+const delDishHandler = function (dishInfo) {
     let thisDishLine = dishList.find('.dish-line[dish-id=' + dishInfo.id + ']');
     if (thisDishLine.length > 0) {
         let dishNumElem = thisDishLine.find('.selected-no'),
@@ -104,15 +104,15 @@ const delDishHandler = function(dishInfo) {
     }
 };
 
-const addLineHandler = function(diskLine) {
+const addLineHandler = function (diskLine) {
     let food_id = diskLine.attr('dish-id');
-    diskLine.find('.minus-btn').on('click', function() {
+    diskLine.find('.minus-btn').on('click', function () {
         emitDelDishEvent({
             username: username,
             food_id: food_id
         });
     });
-    diskLine.find('.plus-btn').on('click', function() {
+    diskLine.find('.plus-btn').on('click', function () {
         emitAddDishEvent({
             username: username,
             food_id: food_id
@@ -128,7 +128,7 @@ const refreshAll = function () {
     let dishLineArr = dishList.find('.dish-line').toArray();
     let totalNo = 0;
     let totalPrice = 0;
-    $.each(dishLineArr, function(i, v) {
+    $.each(dishLineArr, function (i, v) {
         let dishNum = Number($(v).find('.selected-no').val());
         let dishPrice = Number($(v).attr('dish-price'));
         totalNo += dishNum;
@@ -147,5 +147,5 @@ const genDishLine = function (dishInfo) {
         '<div class="ope-btns"><span class="minus-btn">-</span>' +
         '<input type="text" readonly class="selected-no" value="' + dishInfo.num + '" />' +
         '<span class="plus-btn">+</span></div>' +
-        '<div class="total-price">¥' + (dishInfo.price * dishInfo.num) + '</div></div>';
+        '<div class="total-price">$' + (dishInfo.price * dishInfo.num) + '</div></div>';
 };
