@@ -30,15 +30,16 @@ const findMenuItemByID = async (itemID) => {
         itemID = ObjectID(itemID);
 
     const menuCollection = await menu();
-    return await menuCollection.findOne({
+    let res = await menuCollection.findOne({
         _id: itemID
-    }, function (err, res) {
-        if (err) {
-            console.error(err);
-            return undefined;
-        }
-        return res;
     });
+
+    if(res.insertedCount === 0) {
+        console.log("Cannot insert an new menu item...");
+        return undefined;
+    }
+    res._id = res._id.toString();
+    return res;
 };
 
 const findMenuItemByCat = async (category) => {

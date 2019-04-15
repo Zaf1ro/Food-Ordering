@@ -121,7 +121,7 @@ for(let i = 0; i < numOfTable; ++i) {
 }
 
 // someone add dish to list
-orderSocket.on('connection', client => {
+orderSocket.on('connection', async client => {
     let params = client.client.conn.request._query;
     // check tableID and username
     if(!params || !params.tableID || !params.username)
@@ -144,29 +144,31 @@ orderSocket.on('connection', client => {
         console.log("Send Order!!!");
         let dishList = [];
         let allDishes = thisOrder.getDishes();
-        for(let dish_id in allDishes) {
-            let dishInfo = menuModel.findMenuItemByID(dish_id);
-            dishInfo.num = allDishes[dish_id];
-            dishList.push(dishInfo);
+        for(let _id in allDishes) {
+            if (allDishes.hasOwnProperty(_id)) {
+                let dishInfo = await menuModel.findMenuItemByID(_id);
+                dishInfo.num = allDishes[_id];
+                dishList.push(dishInfo);
+            }
         }
         orderSocket.to(client.id).emit('selected-dishes', dishList);
     }
 
     // listen on 'add one dish' event
-    client.on('add-dish', dishInfo => {
-        let food = model.findMenuItemByID(dishInfo.food_id);
+    client.on('add-dish', async dishInfo => {
+        let food = await menuModel.findMenuItemByID(dishInfo._id);
         if(food) {
             orderSocket.to(tableID).emit('add-dish', food);
-            thisOrder.addOneDish(food.id);
+            thisOrder.addOneDish(food._id);
         }
     });
 
     // listen on 'delete one dish' event
-    client.on('del-dish', dishInfo => {
-        let food = model.findFoodById(dishInfo.food_id);
+    client.on('del-dish', async dishInfo => {
+        let food = await menuModel.findMenuItemByID(dishInfo._id);
         if(food) {
             orderSocket.to(tableID).emit('del-dish', food);
-            thisOrder.removeOneDish(food.id);
+            thisOrder.removeOneDish(food._id);
         }
     });
 });
