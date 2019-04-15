@@ -4,7 +4,7 @@
  */
 
 // check whether user is logged in
-isUserLogin = function (req) {
+isUserLogin = (req) => {
     if (!req.session.user) {
         req.session.errorCode = 101;
         return false;
@@ -12,19 +12,17 @@ isUserLogin = function (req) {
     return true;
 };
 
-debugPrint = function (message, obj) {
-    console.log(message);
-    console.log(obj);
+debugPrint = (message, obj) => {
+    console.log(message + ' ' + obj);
     console.log();
 };
 
-const asyncMiddleware = (fn) => (req, res, next) => {
-    Promise.resolve(fn(req, res, next))
-        .catch(next);
+const asyncWrapper = (fn) => (req, res, next) => {
+    Promise.resolve(fn(req, res, next)).catch(next);
 };
 
 module.exports = {
     isUserLogin,
     debugPrint,
-    asyncMiddleware
+    asyncWrapper
 };
