@@ -102,3 +102,22 @@ ul.CTAs a {
 	padding: 0 10px 0 0;
 }
 
+
+/* search */
+#search-form {
+	display: inline-flex;
+	align-items: center;
+	margin: 0 10px;
+}
+
+.form-group #search-input {
+	color: #fff;
+	background-color: #181818;
+	border: 0;
+}
+
+.form-group #search-input:focus {
+	border-bottom: 1px groove #ced4da;
+	border-radius: 0;
+	box-shadow: 0 0 0 0;
+}

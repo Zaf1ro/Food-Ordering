@@ -38,35 +38,6 @@
 /***************************************
  *               Header                *
  ***************************************/
-/*#userInfo {*/
-	/*display: contents;*/
-/*}*/
-
-/*#username {*/
-	/*display: contents;*/
-/*}*/
-
-/*#tableID {*/
-	/*display: contents;*/
-/*}*/
-
-/*.between-username-tableID {*/
-	/*padding-left: 12px;*/
-/*}*/
-
-/*#toOrder {*/
-	/*display: inherit;*/
-	/*padding-bottom: 10px;*/
-/*}*/
-
-/*#toSignout {*/
-	/*display: contents;*/
-/*}*/
-
-/*.dropdown a {*/
-	/*display: contents;*/
-/*}*/
-
 .nav-menu {
 	position: absolute;
 	z-index: 1;
@@ -195,12 +166,12 @@
 
 .slider {
 	background-size: cover;
-	min-height: 800px;
+	min-height: 0px;
 }
 
 @media (max-width: 992px) {
 	.slider {
-		min-height: 700px;
+		min-height: 0px;
 	}
 }
 
