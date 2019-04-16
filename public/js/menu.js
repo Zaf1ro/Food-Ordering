@@ -12,7 +12,7 @@ $('.basket-dishes').on('click', function () {
  ***************************************************/
 const username = $('#username').text();
 const tableID = $('#tableID').text();
-const socket = io('/order?tableID=' + tableID + '&username=' + username);
+const socket = io('/menuItem?tableID=' + tableID + '&username=' + username);
 const dishList = $('#dish-list');
 const basketInfo = $('#basket-info');
 
