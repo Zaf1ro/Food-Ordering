@@ -1,0 +1,39 @@
+nav#sidebar.active
+    .sidebar-header(id=user.tableID)
+        h3#welcome Welcome, #{user.username}
+    ul.list-unstyled.components
+        li.active
+            a.dropdown-toggle(href='#userList', data-toggle='collapse', aria-expanded='false') User
+            ul#userList.collapse.list-unstyled
+                li
+                    a(href='#') Change Name
+                li
+                    a(href='/user/logout') Logout
+        if menu
+            li.active
+                a.dropdown-toggle(href='#CategoryList', data-toggle='collapse', aria-expanded='false') Category
+                ul#CategoryList.collapse.list-unstyled
+                    for obj in menu
+                        if obj.foodList.length > 0
+                            - var categoryName = obj.foodList[0].category;
+                            li
+                                .custom-control.custom-checkbox
+                                    input.custom-control-input(type='checkbox', checked="checked", id='category-' + categoryName)
+                                    label.custom-control-label(for='category-' + categoryName) #{categoryName}
+
+
+script(type='text/javascript').
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
+
+        $('input[type="checkbox"]').on('click', function () {
+            var categoryName = $(this).next().text();
+            if ($(this).prop("checked") === true) {
+                $('#slider-' + categoryName).fadeIn();
+            } else {
+                $('#slider-' + categoryName).fadeOut();
+            }
+        });
+    });

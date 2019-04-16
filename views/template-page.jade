@@ -10,22 +10,35 @@ html
         link(rel='stylesheet', href='/lib/simple-line-icons.css')
         link(href='https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900', rel='stylesheet')
 
+        // Library
+        script(src='lib/jquery-3.4.0.min.js')
+        script(src='lib/bootstrap-4.3.1.min.js')
+        script(src='lib/popper.min.js')
+
         // Stylesheet
         link(rel='stylesheet', href='/css/style.css')
-        link(rel='stylesheet', href='/css/header-footer.css')
+        link(rel='stylesheet', href='/css/footer.css')
+        link(rel='stylesheet', href='/css/sidebar.css')
 
         block styles
 
     body
-        include templates/header
-        block content
+        .wrapper
+            if user
+                    include templates/sidebar
+            #content
+                if user
+                    nav.navbar.navbar-expand-lg.navbar-light
+                        .container-fluid
+                            button#sidebarCollapse.btn.btn-light(type='button')
+                                i.fas.fa-align-right
+                                span.icon-menu
+                    block content
+                else
+                    block content
+
+
         include templates/footer
-
-
-// Library
-script(src='lib/jquery-3.4.0.min.js')
-script(src='lib/bootstrap-4.3.1.min.js')
-script(src='lib/popper.min.js')
 
 // stick header on page
 script.
@@ -41,3 +54,4 @@ script.
 
 // Javascript
 block scripts
+

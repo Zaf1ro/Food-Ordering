@@ -10,8 +10,8 @@ $('.basket-dishes').on('click', function () {
 /***************************************************
  * Global variables
  ***************************************************/
-const username = $('#username').text();
-const tableID = $('#tableID').text();
+const username = $('#welcome').text();
+const tableID = $('.sidebar-header').attr('id');
 const socket = io('/menuItem?tableID=' + tableID + '&username=' + username);
 const dishList = $('#dish-list');
 const basketInfo = $('#basket-info');

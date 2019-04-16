@@ -2,11 +2,11 @@ extends template-page
 
 mixin menu-section(foodList, idx)
     if foodList && foodList.length > 0
-        section.slider.slider-menu.d-flex.align-items-center(id='slider-' + foodList[0].category)
+        section.slider.slider-menu.align-items-center(id='slider-' + foodList[0].category)
             .container
                 .row.justify-content-center
-                    - var size = idx === 0 ? '3' : '1'
-                    .col-md-12(class='filler-' + size)
+                    // - var size = idx === 0 ? '3' : '1'
+                    .col-md-12.filler-1
                     .col-md-6
                         .styled-heading
                             h3=foodList[0].category

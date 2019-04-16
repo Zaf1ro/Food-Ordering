@@ -38,34 +38,34 @@
 /***************************************
  *               Header                *
  ***************************************/
-#userInfo {
-	display: contents;
-}
+/*#userInfo {*/
+	/*display: contents;*/
+/*}*/
 
-#username {
-	display: contents;
-}
+/*#username {*/
+	/*display: contents;*/
+/*}*/
 
-#tableID {
-	display: contents;
-}
+/*#tableID {*/
+	/*display: contents;*/
+/*}*/
 
-.between-username-tableID {
-	padding-left: 12px;
-}
+/*.between-username-tableID {*/
+	/*padding-left: 12px;*/
+/*}*/
 
-#toOrder {
-	display: inherit;
-	padding-bottom: 10px;
-}
+/*#toOrder {*/
+	/*display: inherit;*/
+	/*padding-bottom: 10px;*/
+/*}*/
 
-#toSignout {
-	display: contents;
-}
+/*#toSignout {*/
+	/*display: contents;*/
+/*}*/
 
-.dropdown a {
-	display: contents;
-}
+/*.dropdown a {*/
+	/*display: contents;*/
+/*}*/
 
 .nav-menu {
 	position: absolute;
