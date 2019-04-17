@@ -87,6 +87,9 @@ ul.CTAs a {
 	width: 100%;
 	min-height: 100vh;
 	transition: all 0.3s;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 /* category */
@@ -110,13 +113,13 @@ ul.CTAs a {
 	margin: 0 10px;
 }
 
-.form-group #search-input {
+#search-form .form-control {
 	color: #fff;
 	background-color: #181818;
 	border: 0;
 }
 
-.form-group #search-input:focus {
+#search-form .form-control:focus {
 	border-bottom: 1px groove #ced4da;
 	border-radius: 0;
 	box-shadow: 0 0 0 0;

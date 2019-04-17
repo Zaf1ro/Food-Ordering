@@ -1,6 +1,20 @@
 /***************************************
  *              Dishes                 *
  ***************************************/
+#price {
+	margin: 0 0 10px 0;
+}
+
+.dish-title-box ul li {
+	white-space: nowrap;
+}
+
+.dish-title-box ul li::before {
+	content: "•";
+	padding: 0 5px 0 0;
+	color: #9fa9b9;
+}
+
 .dish-info-wrap {
 	border-radius: 15px;
 	box-shadow: 15px 10px 30px #0007;
@@ -114,7 +128,7 @@
 
 .dish-title-box ul {
 	padding: 0;
-	margin: 10px 0 10px 0;
+	margin: 0 0 10px 0;
 }
 
 .dish-title-box ul li {

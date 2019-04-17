@@ -28,12 +28,18 @@ html
                             button#sidebarCollapse.btn.btn-light(type='button')
                                 i.fas.fa-align-right
                                 span.icon-menu
-                    block content
                 else
-                    block content
-
-
+                    nav.navbar.navbar-expand-lg.navbar-light
+                        .container-fluid
+                block content
         include templates/footer
+
+// Library
+script(src='lib/jquery-3.4.0.min.js')
+script(src='lib/bootstrap-4.3.1.min.js')
+script(src='lib/popper.min.js')
+
+script(src='js/sidebar.js')
 
 // stick header on page
 script.
@@ -45,14 +51,6 @@ script.
             $('.fixed').removeClass('is-sticky');
         };
     });
-
-
-// Library
-script(src='lib/jquery-3.4.0.min.js')
-script(src='lib/bootstrap-4.3.1.min.js')
-script(src='lib/popper.min.js')
-
-script(src='js/sidebar.js')
 
 // Javascript
 block scripts
