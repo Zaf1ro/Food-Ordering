@@ -5,12 +5,10 @@ mixin menu-section(foodList, idx)
         section.slider.slider-menu.align-items-center(id='slider-' + foodList[0].category)
             .container
                 .row.justify-content-center
-                    // - var size = idx === 0 ? '3' : '1'
                     .col-md-12.filler-1
                     .col-md-6
                         .styled-heading
                             h3=foodList[0].category
-                - var index = 0
                 .row
                     each elem in foodList
                         .col-md-3.featured-responsive
@@ -35,35 +33,6 @@ mixin menu-section(foodList, idx)
                                                 p=val
                                     .add-btn-wrap(id=elem._id)
                                         p.btn.btn-danger.add-dish-btn ADD
-                    //while index < foodList.length
-                    //.row
-                    //    each i in [0, 1, 2, 3]
-                    //        if index + i < foodList.length
-                    //            - var elem = foodList[index + i]
-                    //            .col-md-3.featured-responsive
-                    //                .dish-info-wrap
-                    //                    img.img-fluid(src=elem.img_url, alt='#')
-                    //                    if elem.rating > 9.0
-                    //                        span.dish-rating-s #{elem.rating}
-                    //                    else if elem.rating > 8.0
-                    //                        span.dish-rating-a #{elem.rating}
-                    //                    else if elem.rating > 7.0
-                    //                        span.dish-rating-b #{elem.rating}
-                    //                    else
-                    //                        span.dish-rating-c #{elem.rating}
-                    //                    .dish-title-box
-                    //                        h6=elem.food_name
-                    //                        p='Price: $' + elem.price
-                    //                        ul
-                    //                            p Recipe:
-                    //                            each val, j in elem.recipe
-                    //                                li
-                    //                                    p= j+1 + '. ' + val
-                    //                        .add-btn-wrap(id=elem._id)
-                    //                            p.btn.btn-danger.add-dish-btn ADD
-                    //        else
-                    //            break
-                    //- index += 4
 
 block content
     - var idx = 0;

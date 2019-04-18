@@ -1,5 +1,4 @@
 $('.basket-dishes').on('click', function () {
-    console.log('click...');
     if ($(".dish-list").is(":visible")) {
         $(".dish-list").hide();
     } else {
