@@ -1,36 +1,37 @@
 nav#sidebar.active
-    .sidebar-header(id=user.tableID)
-        h3#welcome Welcome, #{user.username}
-    ul.list-unstyled.components
-        li.active
-            a.dropdown-toggle(href='#userDropdown', data-toggle='collapse', aria-expanded='false') User
-            ul#userDropdown.collapse.list-unstyled
-                li
-                    a(href='#') Change Name
-                li
-                    a(href='/user/logout') Logout
-        if menu
+    div#sidebar-content.fixed
+        .sidebar-header(id=user.tableID)
+            h3#welcome Welcome, #{user.username}
+        ul.list-unstyled.components
             li.active
-                a.dropdown-toggle(href='#CategoryDropdown', data-toggle='collapse', aria-expanded='false') Category
-                ul#CategoryDropdown.collapse.list-unstyled
-                    for obj in menu
-                        if obj.foodList.length > 0
-                            - var categoryName = obj.foodList[0].category;
-                            li
-                                .custom-control.custom-checkbox
-                                    input.custom-control-input(type='checkbox', checked="checked", id='category-' + categoryName)
-                                    label.custom-control-label(for='category-' + categoryName) #{categoryName}
-            li.active
-                a.dropdown-toggle(href='#SearchDropdown', data-toggle='collapse', aria-expanded='false') Search
-                ul#SearchDropdown.collapse.list-unstyled
+                a.dropdown-toggle(href='#userDropdown', data-toggle='collapse', aria-expanded='false') User
+                ul#userDropdown.collapse.list-unstyled
                     li
-                        div.form-group#search-form
-                            span.icon-magnifier#search-icon
-                            input.form-control#search-input(type='text', placeholder='Type here')
-            li.active
-                a.dropdown-toggle(href='#excludeDropdown', data-toggle='collapse', aria-expanded='false') Exclude
-                ul#excludeDropdown.collapse.list-unstyled
+                        a(href='#') Change Name
                     li
-                        div.form-group#search-form
-                            span.icon-ban#search-icon
-                            input.form-control#exclude-input(type='text', placeholder='Type here')
+                        a(href='/user/logout') Logout
+            if menu
+                li.active
+                    a.dropdown-toggle(href='#CategoryDropdown', data-toggle='collapse', aria-expanded='false') Category
+                    ul#CategoryDropdown.collapse.list-unstyled
+                        for obj in menu
+                            if obj.foodList.length > 0
+                                - var categoryName = obj.foodList[0].category;
+                                li
+                                    .custom-control.custom-checkbox
+                                        input.custom-control-input(type='checkbox', checked="checked", id='category-' + categoryName)
+                                        label.custom-control-label(for='category-' + categoryName) #{categoryName}
+                li.active
+                    a.dropdown-toggle(href='#SearchDropdown', data-toggle='collapse', aria-expanded='false') Search
+                    ul#SearchDropdown.collapse.list-unstyled
+                        li
+                            div.form-group#search-form
+                                span.icon-magnifier#search-icon
+                                input.form-control#search-input(type='text', placeholder='Type here')
+                li.active
+                    a.dropdown-toggle(href='#excludeDropdown', data-toggle='collapse', aria-expanded='false') Exclude
+                    ul#excludeDropdown.collapse.list-unstyled
+                        li
+                            div.form-group#search-form
+                                span.icon-ban#search-icon
+                                input.form-control#exclude-input(type='text', placeholder='Type here')
