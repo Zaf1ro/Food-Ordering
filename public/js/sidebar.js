@@ -29,6 +29,12 @@ $(document).ready(function () {
     // display or hide sidebar
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
+        $('#sidebarCollapse').toggle();
+    });
+
+    $('#dismiss').on('click', function () {
+        $('#sidebar').toggleClass('active');
+        $('#sidebarCollapse').toggle();
     });
 
     // display or hide category of menu items
