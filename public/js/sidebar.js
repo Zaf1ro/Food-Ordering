@@ -1,8 +1,12 @@
 const hideOrShowSlider = () => {
-    $('.slider-menu').each(function() {
-        $(this).show();
-        if($(this).find('.featured-responsive:visible').length === 0) {
-            $(this).hide();
+    $('.slider-menu').each(function(index) {
+        // the slider is not hidden
+        if($('#CategoryDropdown').find('input').eq(index).prop("checked")) {
+            $(this).show();
+            // hide slider when there's no menu item
+            if($(this).find('.featured-responsive:visible').length === 0) {
+                $(this).hide();
+            }
         }
     });
 };
@@ -35,6 +39,13 @@ const hideOrShowMenuItem = (inKey, exKey) => {
 };
 
 $(document).ready(function () {
+    $(".dropdown-toggle").click(function(){
+        $(this).next().css({
+            "background": "transparent url(../images/sidebar/bg_black.png) repeat top left",
+            "opacity": "0.8"
+        })
+    });
+
     // display or hide sidebar
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
@@ -46,11 +57,15 @@ $(document).ready(function () {
         $('#sidebarCollapse').toggle();
     });
 
-    // display or hide category of menu items
+    // display or hide slider
     $('input[type="checkbox"]').on('click', function () {
         const categoryName = $(this).next().text();
         if ($(this).prop("checked") === true) {
-            $('#slider-' + categoryName).fadeIn();
+            const slider = $('#slider-' + categoryName);
+            // no menu item to display
+            if(slider.find('.featured-responsive:hidden').length > 0) {
+                slider.fadeIn();
+            }
         } else {
             $('#slider-' + categoryName).fadeOut();
         }

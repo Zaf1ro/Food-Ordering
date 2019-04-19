@@ -37,10 +37,14 @@
 	margin-top: 12px;
 }
 
+#welcome {
+	
+}
+
 #sidebar {
+	background: transparent url(../images/sidebar/pattern.png) repeat top left;
 	min-width: 250px;
 	max-width: 250px;
-	background: #181818;
 	color: #fff;
 	transition: all 0.3s;
 }
@@ -51,12 +55,10 @@
 
 #sidebar .sidebar-header {
 	padding: 20px;
-	background: #181818;
 }
 
 #sidebar ul.components {
 	padding: 20px 0;
-	/*border-bottom: 1px solid #47748b;*/
 }
 
 #sidebar ul p {
@@ -67,19 +69,17 @@
 #sidebar ul li a {
 	color: #fff;
 	padding: 10px;
-	font-size: 1.1em;
 	display: block;
 }
 
-#sidebar ul li a:hover {
-	color: #181818;
-	background: #fff;
-}
-
-#sidebar ul li.active > a,
-a[aria-expanded="true"] {
+#sidebar a[aria-expanded="true"] {
 	color: #fff;
-	background: #181818;
+	background: transparent url(../images/sidebar/bg_black.png) repeat top left;
+	opacity: 0.8;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
 }
 
 a[data-toggle="collapse"] {
@@ -96,8 +96,7 @@ a[data-toggle="collapse"] {
 
 ul ul a {
 	font-size: 0.9em !important;
-	padding-left: 30px !important;
-	background: #181818;
+	padding-left: 20px !important;
 }
 
 ul.CTAs {
@@ -128,13 +127,12 @@ ul.CTAs a {
 	font-size: 1.1em !important;
 	line-height: 1.8;
 	text-align: left;
-	margin: 0 10px;
+	margin: 0 0 0 20px;
 }
 
 .custom-checkbox label {
-	padding: 0 10px 0 0;
+	font-size: 0.9em;
 }
-
 
 /* search */
 #search-form {

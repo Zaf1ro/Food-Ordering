@@ -348,7 +348,11 @@ footer {
 }
 
 .copyright ul {
-	margin: 25px 0 0;
+	text-align: -webkit-center;
+	text-align: -moz-center;
+	text-align: center;
+	vertical-align: center;
+	margin: 0;
 	padding: 0;
 }
 

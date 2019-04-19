@@ -13,28 +13,33 @@ mixin menu-section(foodList, idx)
                     each elem in foodList
                         .col-md-3.featured-responsive
                             .dish-info-wrap
-                                img.img-fluid(src=elem.img_url, alt='#')
-                                if elem.rating > 9.0
-                                    span.dish-rating-s #{elem.rating}
-                                else if elem.rating > 8.0
-                                    span.dish-rating-a #{elem.rating}
-                                else if elem.rating > 7.0
-                                    span.dish-rating-b #{elem.rating}
-                                else
-                                    span.dish-rating-c #{elem.rating}
-                                .dish-title-box
-                                    h6=elem.food_name
-                                    div#price
-                                       p='Price: $' + elem.price
-                                    p Recipe:
-                                    ul
-                                        each val in elem.recipe
-                                            li
-                                                p=val
-                                    .add-btn-wrap(id=elem._id)
-                                        p.btn.btn-danger.add-dish-btn ADD
+                                .dish-info-content
+                                    img.img-fluid(src=elem.img_url, alt='#')
+                                    if elem.rating > 9.0
+                                        span.dish-rating-s #{elem.rating}
+                                    else if elem.rating > 8.0
+                                        span.dish-rating-a #{elem.rating}
+                                    else if elem.rating > 7.0
+                                        span.dish-rating-b #{elem.rating}
+                                    else
+                                        span.dish-rating-c #{elem.rating}
+                                    .dish-title-box
+                                        h6=elem.food_name
+                                        div#price
+                                           p='Price: $' + elem.price
+                                        p Recipe:
+                                        ul
+                                            each val in elem.recipe
+                                                li
+                                                    p=val
+                                        .add-btn-wrap(id=elem._id)
+                                            p.btn.btn-danger.add-dish-btn ADD
 
 block content
+    style(type='text/css').
+        body {
+            background: #fff url(../images/bg/menu.jpg);
+        }
     - var idx = 0;
     each obj in menu
         + menu-section(obj.foodList, idx)

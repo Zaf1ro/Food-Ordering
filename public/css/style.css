@@ -156,10 +156,6 @@ p {
 /***************************************
  *               Slider                *
  ***************************************/
-.slider-menu .row {
-	padding-bottom: 15px;
-}
-
 .styled-heading {
 	color: #F5FFFA;
 	text-align: center;
@@ -175,19 +171,14 @@ p {
 .styled-heading h3 {
 	position: relative;
 	padding: 0 0 23px;
-}
-
-.styled-heading h3:after {
-	position: absolute;
-	content: "";
-	width: 60px;
-	height: 3px;
-	background: #ff3a6d;
-	bottom: 0;
-	left: 50%;
-	-webkit-transform: translateX(-50%);
-	-ms-transform: translateX(-50%);
-	transform: translateX(-50%);
+	font-size: 45px;
+	line-height: 28px;
+	margin: 0;
+	font-weight: 700;
+	text-transform: uppercase;
+	font-family: 'Arvo', Arial, sans-serif;
+	color: #fff;
+	text-shadow: 5px 5px 5px rgba(0,0,0,0.4);
 }
 
 .find-img-align {
