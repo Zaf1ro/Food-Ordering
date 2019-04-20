@@ -1,10 +1,12 @@
 const hideOrShowSlider = () => {
     $('.slider-menu').each(function (index) {
         // the slider is not hidden
-        if ($('#CategoryDropdown').find('input').eq(index).prop("checked")) {
-            $(this).show();
+        if ($('#FilterDropdown').find('input').eq(index).prop("checked")) {
+            console.log($(this).find('.featured-responsive:visible').length);
             // hide slider when there's no menu item
-            if ($(this).find('.featured-responsive:visible').length === 0) {
+            if ($(this).find('.featured-responsive:visible').length > 0) {
+                $(this).show();
+            } else {
                 $(this).hide();
             }
         }

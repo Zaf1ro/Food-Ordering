@@ -1,10 +1,11 @@
 const menuModel = require('../data/menu');
-const numOfTable = 3;
+const tableNum = require('../data/settings').tableNum;
 
 // Class Order
 class Order {
-    constructor(orderID) {
-        this.orderID = orderID;
+    constructor(tableID) {
+        this.orderID = tableID;
+        this.createDate = new Date();
         this.dishes = {};
         this.nDish = 0;
     }
@@ -49,9 +50,6 @@ class Order {
 }
 
 const orderList = [];
-for (let i = 0; i < numOfTable; ++i) {
-    orderList.push(new Order());
-}
 
 const menuItemConn = (menuItemSocket) => {
     menuItemSocket.on('connection', async (client) => {
@@ -63,14 +61,22 @@ const menuItemConn = (menuItemSocket) => {
         let tableID = params.tableID,
             username = params.username;
         // check tableID
-        if (tableID <= 0 || tableID >= numOfTable)
+        if (tableID < 0 || tableID >= tableNum)
             return;
 
         // join room
         client.join(tableID);
 
+        console.log(tableID);
+
         // get current order
-        let thisOrder = orderList[tableID - 1];
+        let thisOrder = undefined;
+        if(orderList[tableID]) {
+            thisOrder = orderList[tableID];
+        } else {
+            thisOrder = new Order();
+            orderList[tableID] = thisOrder;
+        }
 
         // get dishes which are ordered before
         if (thisOrder.nDish > 0) {

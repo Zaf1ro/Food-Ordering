@@ -24,15 +24,13 @@ block content
                                             button.btn-form(type='submit')
                                                 span.icon-magnifier.search-icon
                                                 | Start To Order
-                                                i.pe-7s-angle-right
                                     else
                                         .btn-group(role='group', aria-label='Basic example')
                                             input.btn-group1(type='text' name="username" placeholder='What is Your Name' required)
                                             select.btn-group2(name='tableID' required)
                                                 option(value='' disabled="disabled" selected='selected') Select a Table ID
-                                                each table in tables
-                                                    option(value=table) #{table}
+                                                - for (var id = 0; id < tableNum; id++)
+                                                    option(value=id) #{id + 1}
                                             button.btn-form(type='submit')
                                                 span.icon-magnifier.search-icon
                                                 | Start To Order
-                                                i.pe-7s-angle-right

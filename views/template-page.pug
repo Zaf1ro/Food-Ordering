@@ -20,14 +20,14 @@ html
     body
         .wrapper
             if user
-                    include templates/sidebar.pug
+                include templates/sidebar.pug
             #content
                 if user
                     nav.navbar.navbar-expand-lg.navbar-light
-                        .container-fluid
+                        div.container-fluid
                 else
                     nav.navbar.navbar-expand-lg.navbar-light
-                        .container-fluid
+                        div.container-fluid
                 block content
         include templates/footer.pug
 
