@@ -1,21 +1,33 @@
 nav#sidebar.active
-    div#sidebar-content.fixed
-        #dismiss.sidebar-trigger
-            span.icon-arrow-left#hide-sidebar
+    div#sidebar-content
         .sidebar-header(id=user.tableID)
-            h3#welcome Welcome, #{user.username}
+            h3 Welcome,
+            h3#username #{user.username}
+            strong Welcome
         ul.list-unstyled.components
             li.active
                 a.dropdown-toggle(href='#userDropdown', data-toggle='collapse', aria-expanded='false') User
                 ul#userDropdown.collapse.list-unstyled
                     li
-                        a(href='#') Change Name
+                        div.user-form
+                           a(href='#') Change Name
                     li
-                        a(href='/user/logout') Logout
+                        div.user-form
+                            a(href='/user/logout') Logout
             if menu
                 li.active
-                    a.dropdown-toggle(href='#CategoryDropdown', data-toggle='collapse', aria-expanded='false') Category
-                    ul#CategoryDropdown.collapse.list-unstyled
+                    a.dropdown-toggle(href='#NavigationDropdown', data-toggle='collapse', aria-expanded='false') Navigation
+                    ul#NavigationDropdown.collapse.list-unstyled
+                        for obj in menu
+                            if obj.foodList.length > 0
+                                - var categoryName = obj.foodList[0].category;
+                                li
+                                    div.nav-form
+                                        span.icon-cursor
+                                        a(href='#slider-' + categoryName) #{categoryName}
+                li.active
+                    a.dropdown-toggle(href='#FilterDropdown', data-toggle='collapse', aria-expanded='false') Filter
+                    ul#FilterDropdown.collapse.list-unstyled
                         for obj in menu
                             if obj.foodList.length > 0
                                 - var categoryName = obj.foodList[0].category;
@@ -37,3 +49,5 @@ nav#sidebar.active
                             div.form-group#search-form
                                 span.icon-ban#search-icon
                                 input.form-control#exclude-input(type='text', placeholder='Type here')
+    div#sidebar-scrollup
+        span.icon-arrow-up-circle

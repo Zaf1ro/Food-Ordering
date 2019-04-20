@@ -1,10 +1,10 @@
 const hideOrShowSlider = () => {
-    $('.slider-menu').each(function(index) {
+    $('.slider-menu').each(function (index) {
         // the slider is not hidden
-        if($('#CategoryDropdown').find('input').eq(index).prop("checked")) {
+        if ($('#CategoryDropdown').find('input').eq(index).prop("checked")) {
             $(this).show();
             // hide slider when there's no menu item
-            if($(this).find('.featured-responsive:visible').length === 0) {
+            if ($(this).find('.featured-responsive:visible').length === 0) {
                 $(this).hide();
             }
         }
@@ -39,22 +39,13 @@ const hideOrShowMenuItem = (inKey, exKey) => {
 };
 
 $(document).ready(function () {
-    $(".dropdown-toggle").click(function(){
-        $(this).next().css({
-            "background": "transparent url(../images/sidebar/bg_black.png) repeat top left",
-            "opacity": "0.8"
-        })
-    });
-
     // display or hide sidebar
-    $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
-        $('#sidebarCollapse').toggle();
-    });
-
-    $('#dismiss').on('click', function () {
-        $('#sidebar').toggleClass('active');
-        $('#sidebarCollapse').toggle();
+    $('#sidebar .dropdown-toggle').click(function () {
+        const dropdownElem = $('.dropdown-toggle[aria-expanded="true"]');
+        if (dropdownElem.length === 0 || (dropdownElem.length === 1
+            && $(this).attr('href') === dropdownElem.eq(0).attr('href'))) {
+            $('#sidebar').toggleClass('active');
+        }
     });
 
     // display or hide slider
@@ -63,7 +54,7 @@ $(document).ready(function () {
         if ($(this).prop("checked") === true) {
             const slider = $('#slider-' + categoryName);
             // no menu item to display
-            if(slider.find('.featured-responsive:hidden').length > 0) {
+            if (slider.find('.featured-responsive:hidden').length > 0) {
                 slider.fadeIn();
             }
         } else {
@@ -90,4 +81,19 @@ $(document).ready(function () {
         hideOrShowMenuItem(inKey, exKey);
         hideOrShowSlider();
     });
+
+    $('#sidebar-scrollup').click(function (e) {
+        e.preventDefault();
+        $('html, body').animate({scrollTop: 0}, 300);
+    });
+});
+
+// scroll to the top of page
+$(window).scroll(function () {
+    const btnTop = $('#sidebar-scrollup');
+    if ($(window).scrollTop() > 300) {
+        btnTop.fadeIn();
+    } else {
+        btnTop.fadeOut();
+    }
 });
