@@ -8,7 +8,7 @@ const submitOrder = async (orderObj) => {
         throw "You must provide an valid order";
 
     if(orderObj.tableID < 0 || orderObj.tableID >= tableNum)
-        throw "You must provide an valid tableNum for order";
+        throw "You must provide an valid tableID for order";
 
     const orderCollection = await order();
     let res = await orderCollection.insertOne({
@@ -25,9 +25,20 @@ const submitOrder = async (orderObj) => {
     return orderCollection.findOne(res.insertedId);
 };
 
+const findOrderByTableID = async (tableID) => {
+    if(tableID < 0 || tableID >= tableNum)
+        throw "You must provide an valid tableID for search";
+
+    const orderCollection = await order();
+    return await orderCollection.find({
+        tableID: tableID
+    }).toArray();
+};
+
 
 module.exports = {
-    submitOrder
+    submitOrder,
+    findOrderByTableID
 };
 
 
