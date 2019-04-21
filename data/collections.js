@@ -16,5 +16,6 @@ const getColByName = (colName) => {
 
 module.exports = {
     user: getColByName('user'),
-    menu: getColByName('menu')
+    menu: getColByName('menu'),
+    order: getColByName('order')
 };
