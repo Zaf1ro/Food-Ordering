@@ -1,5 +1,5 @@
 /***************************************
- *              SideBar                *
+ *               Global                *
  ***************************************/
 .wrapper {
 	display: flex;
@@ -16,10 +16,12 @@
 	top: 0;
 	right: 10px;
 	margin-top: 20px;
-	text-align: -webkit-center;
 	background: #383838;
 	line-height: 1.5;
 	border-radius: .25rem;
+	text-align: -webkit-center;
+	text-align: -moz-center;
+	text-align: center;
 	transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
@@ -58,10 +60,6 @@
 	position: sticky;
 	top: 0;
 }
-
-/*#sidebar.active {*/
-/*margin-left: -250px;*/
-/*}*/
 
 #sidebar .sidebar-header {
 	padding: 20px 0 20px 0;
@@ -123,19 +121,9 @@ a[data-toggle="collapse"] {
 	transform: translateX(50%);
 }
 
-ul.CTAs {
-	padding: 20px;
-}
-
-ul.CTAs a {
-	text-align: center;
-	font-size: 0.9em !important;
-	display: block;
-	border-radius: 5px;
-	margin-bottom: 5px;
-}
-
-/* user */
+/***************************************
+ *              	User                 *
+ ***************************************/
 .user-form a {
 	margin: 0 0 0 20px;
 	font-size: 1.0em !important;
@@ -144,7 +132,9 @@ ul.CTAs a {
 	padding-left: 0.5em;
 }
 
-/* content */
+/***************************************
+ *              Content                *
+ ***************************************/
 #content {
 	width: 100%;
 	min-height: 100vh;
@@ -154,7 +144,9 @@ ul.CTAs a {
 	justify-content: center;
 }
 
-/* filter */
+/***************************************
+ *              Filter                 *
+ ***************************************/
 .custom-checkbox {
 	color: #737882;
 	font-size: 1.1em !important;
@@ -163,7 +155,13 @@ ul.CTAs a {
 	margin: 0 0 0 20px;
 }
 
-/* navigation */
+.custom-checkbox label {
+	font-size: 0.9em;
+}
+
+/***************************************
+ *            Navigation               *
+ ***************************************/
 .nav-form {
 	display: flex;
 	margin: 0 0 0 20px;
@@ -184,11 +182,10 @@ ul.CTAs a {
 	padding-left: 0.5em;
 }
 
-.custom-checkbox label {
-	font-size: 0.9em;
-}
 
-/* search */
+/***************************************
+ *              Search                 *
+ ***************************************/
 #search-form {
 	display: inline-flex;
 	align-items: center;

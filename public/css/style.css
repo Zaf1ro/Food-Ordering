@@ -24,6 +24,28 @@
 	color: #ffffff;
 }
 
+.navbar {
+	padding: .5rem 0;
+}
+
+@media (max-width: 992px) {
+	.navbar-nav {
+		padding: 7px 20px;
+	}
+}
+
+.slider {
+	background-size: cover;
+	min-height: 0px;
+}
+
+@media (max-width: 992px) {
+	.slider {
+		min-height: 0px;
+	}
+}
+
+
 /***************************************
  *               Global                *
  ***************************************/

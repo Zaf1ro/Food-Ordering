@@ -19,13 +19,19 @@ block content
                             .col-md-10
                                 form.form-wrap.mt-4(method='POST' action='/user/register')
                                     // user control
-                                    if user && user.username && user.tableID
-                                        .btn-group(role='group', aria-label='Basic example', , style='display: flex; align-items: center; justify-content: center;')
+                                    if user
+                                        .btn-group
+                                            style(type='text/css').
+                                                .btn-group {
+                                                    display: flex;
+                                                    align-items: center;
+                                                    justify-content: center;
+                                                }
                                             button.btn-form(type='submit')
                                                 span.icon-magnifier.search-icon
                                                 | Start To Order
                                     else
-                                        .btn-group(role='group', aria-label='Basic example')
+                                        .btn-group
                                             input.btn-group1(type='text' name="username" placeholder='What is Your Name' required)
                                             select.btn-group2(name='tableID' required)
                                                 option(value='' disabled="disabled" selected='selected') Select a Table ID
@@ -34,3 +40,6 @@ block content
                                             button.btn-form(type='submit')
                                                 span.icon-magnifier.search-icon
                                                 | Start To Order
+
+block styles
+    link(rel='stylesheet', href='/css/home.css')

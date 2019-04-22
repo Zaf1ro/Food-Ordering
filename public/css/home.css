@@ -1,0 +1,94 @@
+.slider-title_box {
+	text-align: center;
+}
+
+.slider-content_wrap h5 {
+	color: #909090;
+	font-weight: 400;
+	margin: 24px 0;
+}
+
+@media (max-width: 480px) {
+	.form-wrap {
+		margin: 0 !important;
+	}
+}
+
+/***************************************
+ *         Input and Button            *
+ ***************************************/
+.btn-group {
+	width: 100%;
+}
+
+@media (max-width: 576px) {
+	.btn-group {
+		display: block;
+	}
+}
+
+.btn-group1 {
+	padding: 24px;
+	width: 40%;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+	border: none;
+}
+
+@media (max-width: 576px) {
+	.btn-group1 {
+		width: 100%;
+		border-radius: 3px;
+		margin: 0 0 10px;
+		padding: 17px;
+	}
+}
+
+.btn-group2 {
+	position: relative;
+	padding: 24px;
+	width: 33%;
+	border-top: none;
+	border-right: none;
+	border-bottom: none;
+	border-left: 1px solid #ccc;
+}
+
+@media (max-width: 576px) {
+	.btn-group2 {
+		width: 100%;
+		border-radius: 3px;
+		margin: 0 0 10px;
+		padding: 17px;
+	}
+}
+
+.btn-form {
+	font-weight: 400;
+	font-size: 18px;
+	padding: 17px;
+	width: 27%;
+	background: #ff3a6d;
+	color: #ffffff;
+	border: none;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+
+@media (max-width: 768px) {
+	.btn-form {
+		width: auto;
+	}
+}
+
+@media (max-width: 576px) {
+	.btn-form {
+		width: 100%;
+		border-radius: 3px;
+	}
+}
+
+.search-icon {
+	font-size: 15px;
+	padding-right: 10px;
+}
