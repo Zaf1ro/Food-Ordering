@@ -51,7 +51,7 @@
  ***************************************/
 body {
 	line-height: 1.2;
-	background: url(../images/bg/default.jpg) repeat;
+	background: url(../img/bg/default.jpg) repeat;
 	background-size: contain;
 	font-family: 'Roboto', sans-serif;
 }

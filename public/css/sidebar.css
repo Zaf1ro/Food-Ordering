@@ -31,7 +31,7 @@
 }
 
 #sidebar {
-	background: transparent url(../images/sidebar/pattern.png) repeat top left;
+	background: transparent url(../img/sidebar/pattern.png) repeat top left;
 	min-width: 250px;
 	max-width: 250px;
 	color: #fff;
@@ -86,13 +86,13 @@
 }
 
 #sidebar ul ul {
-	background: transparent url(../images/sidebar/bg_black.png) repeat top left;
+	background: transparent url(../img/sidebar/bg_black.png) repeat top left;
 	opacity: 0.8;
 }
 
 #sidebar a[aria-expanded="true"] {
 	color: #fff;
-	background: transparent url(../images/sidebar/bg_black.png) repeat top left;
+	background: transparent url(../img/sidebar/bg_black.png) repeat top left;
 	opacity: 0.8;
 	-webkit-transition: all 0.3s ease-in-out;
 	-moz-transition: all 0.3s ease-in-out;

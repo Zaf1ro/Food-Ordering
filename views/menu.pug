@@ -38,23 +38,24 @@ mixin menu-section(foodList, idx)
 block content
     style(type='text/css').
         body {
-            background: #fff url(../images/bg/menu.jpg);
+            background: #fff url(../img/bg/menu.jpg);
         }
-    - var idx = 0;
-    each obj in menu
-        + menu-section(obj.foodList, idx)
-        - idx++;
+    if menu && menu.length > 0
+        - var idx = 0;
+        each obj in menu
+            + menu-section(obj.foodList, idx)
+            - idx++;
 
-    .col-lg-4.col-sm-6.col-xs-12.cart-container
-        .cart-basket#cart-basket
-            .dish-list#dish-list
-        .basket-info#basket-info
-            .basket-dishes
-                span.icon-basket-loaded
-                span.badge 0
-            span.price-label Total Price:
-            span.total-price 0
-            button.btn.btn-success#submit-meal-btn Submit
+        .col-lg-4.col-sm-6.col-xs-12.cart-container
+            .cart-basket#cart-basket
+                .dish-list#dish-list
+            .basket-info#basket-info
+                .basket-dishes
+                    span.icon-basket-loaded
+                    span.badge 0
+                span.price-label Total Price:
+                span.total-price 0
+                button.btn.btn-success#submit-meal-btn Submit
 
 
 block styles
