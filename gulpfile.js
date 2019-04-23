@@ -1,7 +1,12 @@
-const gulp = require('gulp');
-const del = require('del');
-const pug = require('gulp-pug');
-const cleanCSS = require('gulp-clean-css');
+const gulp = require('gulp'),
+      del = require('del'),
+      pug = require('gulp-pug'),
+      cleanCSS = require('gulp-clean-css'),
+      autoprefixer = require('gulp-autoprefixer'),
+      cached = require('gulp-cached'),
+      uglify = require('gulp-uglify'),
+      imagemin = require('gulp-imagemin'),
+      babel = require('gulp-babel');
 
 const paths = {
     views: {
@@ -17,7 +22,8 @@ const paths = {
         dest: 'dist/js/'
     },
     images: {
-        src: 'public/img/'
+        src: ['public/img/*.{jpg,jpeg,png,gif}','public/img/**/*.{jpg,jpeg,png,gif}'],
+        dest: 'dist/img/'
     }
 };
 
@@ -32,6 +38,7 @@ const clean = () => {
  */
 const views = () => {
     return gulp.src(paths.views.src)
+        .pipe(cached('views'))
         .pipe(pug({
             doctype: 'html',
             pretty: true
@@ -42,16 +49,49 @@ const views = () => {
 /**
  * Clean and optimize css files
  */
-function styles() {
+const styles = () => {
     return gulp.src(paths.styles.src) // .pipe(less()) TODO: use less instead of raw css
+        .pipe(cached('styles'))
+        .pipe(autoprefixer())
         .pipe(cleanCSS())
         .pipe(gulp.dest(paths.styles.dest));
-}
+};
 
-const build = gulp.series(clean, gulp.parallel(styles));
+/**
+ * Compress the scripts file
+ */
+const scripts = () => {
+    return gulp.src(paths.scripts.src)
+        .pipe(cached('scripts'))
+        .pipe(babel({
+            "presets": ["es2015"]
+        }))
+        .pipe(uglify())
+        .pipe(gulp.dest(paths.scripts.dest));
+};
+
+/**
+ * Optimize the images
+ */
+const images = () => {
+    return gulp.src(paths.images.src)
+        .pipe(cached('image'))
+        .pipe(imagemin({
+            optimizationLevel: 3,
+            progressive: true,
+            interlaced: true,
+            multipass: true
+        }))
+        .pipe(gulp.dest(paths.images.dest));
+};
+
+const build = gulp.series(clean, gulp.parallel([styles, scripts, images]));
 
 module.exports = {
     clean: clean,
     views: views,
+    styles: styles,
+    scripts: scripts,
+    images: images,
     default: build
 };
