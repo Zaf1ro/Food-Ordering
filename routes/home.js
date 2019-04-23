@@ -4,7 +4,7 @@ const utils = require('./utils');
 const tableNum = require('../data/settings').tableNum;
 
 router.get('/', (req, res, next) => {
-    utils.debugPrint('Home Get:', req.session.user);
+    utils.debugPrint('Home Get', req.session.user);
     res.render('home', {
         title: 'Home',
         tableNum: tableNum

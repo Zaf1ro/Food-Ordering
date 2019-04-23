@@ -13,7 +13,7 @@ isUserLogin = (req) => {
 };
 
 debugPrint = (message, obj) => {
-    console.log(message + ' ' + obj);
+    console.log('%s: %j', message, obj);
     console.log();
 };
 

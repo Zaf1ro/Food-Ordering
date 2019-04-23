@@ -4,14 +4,14 @@ const tableNum = require('../data/settings').tableNum;
 // Class Order
 class Order {
     constructor(tableID) {
-        this.orderID = tableID;
+        this.tableID = tableID;
         this.createDate = new Date();
         this.dishes = {};
         this.nDish = 0;
     }
 
     getOrderID() {
-        return this.orderID;
+        return this.tableID;
     }
 
     getDishes() {
@@ -49,7 +49,7 @@ class Order {
     }
 }
 
-const orderList = [];
+const orderList = Array(tableNum);
 
 const menuItemConn = (menuItemSocket) => {
     menuItemSocket.on('connection', async (client) => {
@@ -66,8 +66,6 @@ const menuItemConn = (menuItemSocket) => {
 
         // join room
         client.join(tableID);
-
-        console.log(tableID);
 
         // get current order
         let thisOrder = undefined;
@@ -115,6 +113,10 @@ const menuItemConn = (menuItemSocket) => {
                 menuItemSocket.to(tableID).emit('del-dish', food);
                 thisOrder.removeOneDish(food._id);
             }
+        });
+
+        client.on('confirm-order', async dishInfo => {
+
         });
     })
 };

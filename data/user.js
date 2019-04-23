@@ -7,8 +7,6 @@ const insertUser = async function (username, tableID) {
         throw "You must provide an valid username for user";
     if (!tableID)
         throw "You must provide an valid tableID for user";
-    if(typeof tableID === 'string')
-        tableID = parseInt(tableID);
 
     const userCollection = await user();
     let res = await userCollection.insertOne({
@@ -18,7 +16,7 @@ const insertUser = async function (username, tableID) {
 
     if (res.insertedCount === 0) {
         console.log("Cannot insert an new user...");
-        return undefined;
+        // TODO: callback function for duplicate username
     }
     return userCollection.findOne(res.insertedId);
 };
@@ -44,10 +42,8 @@ const findUserByID = async function (userID) {
 const findUserByName = async function (username, tableID) {
     if (!username || typeof username !== 'string')
         throw "You must provide an valid username for searching user";
-    if (!tableID)
+    if (tableID === undefined)
         throw "You must provide an valid tableID for searching user";
-    if (typeof tableID === 'string')
-        tableID = parseInt(tableID);
 
     const userCollection = await user();
     const res = await userCollection.findOne({

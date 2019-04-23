@@ -17,14 +17,16 @@ const registerUser = async (username, tableID) => {
 
 router.post('/user/register', asyncWrapper(async (req, res, next) => {
     if (!utils.isUserLogin(req)) { // new user to register
-        let result = await registerUser(req.body.username, req.body.tableID);
+        const tableID = parseInt(req.body.tableID),
+              result = await registerUser(req.body.username, tableID);
+
         if (!result) {
             console.log('username duplicate...');
             // TODO: notify user to re-input username
         } else {
             req.session.user = {
                 username: req.body.username,
-                tableID: req.body.tableID
+                tableID: tableID
             };
             res.redirect('/menu');
         }

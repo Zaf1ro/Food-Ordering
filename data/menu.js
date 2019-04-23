@@ -34,11 +34,9 @@ const findMenuItemByID = async (itemID) => {
         _id: itemID
     });
 
-    if(res.insertedCount === 0) {
-        console.log("Cannot insert an new menu item...");
-        return undefined;
+    if(res) {
+        res._id = res._id.toString();
     }
-    res._id = res._id.toString();
     return res;
 };
 
