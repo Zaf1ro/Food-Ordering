@@ -29,12 +29,18 @@ const emitDelDishEvent = function (dishInfo) {
     socket.emit('del-dish', dishInfo);
 };
 
+const emitSubmitEvent = function (tableInfo) {
+    socket.emit('submit-order', tableInfo);
+};
+
 
 /***************************************************
  * Listen response from server
  ***************************************************/
 (function (window, document, $) {
-    let addDishBtn = $('.add-dish-btn');
+    const addDishBtn = $('.add-dish-btn');
+    const submitBtn = $('#submit-meal-btn');
+
     console.log('starting...');
 
     addDishBtn.on('click', function () {
@@ -42,6 +48,10 @@ const emitDelDishEvent = function (dishInfo) {
             username: username,
             _id: $(this).parent().attr('id')
         });
+    });
+
+    submitBtn.on('click', () => {
+        emitSubmitEvent(username);
     });
 
     // Listen Add One Dish event from customer
@@ -58,16 +68,22 @@ const emitDelDishEvent = function (dishInfo) {
         showMessage(dishInfo.msg);
     });
 
-    socket.on('join-table', function(msg) {
+    socket.on('join-table', function (msg) {
         console.log('Some joins table');
         showMessage(msg);
     });
 
-    socket.on('selected-dishes', function (dishList) {
+    socket.on('reload-dishes', function (dishList) {
         console.log("Add old dishes...");
         for (let dishInfo of dishList) {
             addDishHandler(dishInfo);
         }
+    });
+
+    socket.on('submit-order', function (tableInfo) {
+        console.log('Submit order...');
+        delAllDishHandler();
+        showMessage(tableInfo.msg);
     });
 
 }(window, document, $));
@@ -107,17 +123,21 @@ const delDishHandler = function (dishInfo) {
     }
 };
 
-const addLineHandler = function (diskLine) {
-    diskLine.find('.minus-btn').on('click', function () {
+const delAllDishHandler = function () {
+    dishList.find('.dish-line').remove();
+};
+
+const addLineHandler = function (dishLine) {
+    dishLine.find('.minus-btn').on('click', function () {
         emitDelDishEvent({
             username: username,
-            _id: diskLine.attr('dish-id')
+            _id: dishLine.attr('dish-id')
         });
     });
-    diskLine.find('.plus-btn').on('click', function () {
+    dishLine.find('.plus-btn').on('click', function () {
         emitAddDishEvent({
             username: username,
-            _id: diskLine.attr('dish-id')
+            _id: dishLine.attr('dish-id')
         });
     });
 };

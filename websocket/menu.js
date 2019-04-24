@@ -1,27 +1,17 @@
 const menuModel = require('../data/menu');
+const orderModel = require('../data/order');
 const tableNum = require('../data/settings').tableNum;
 
 /***************************************************
  * Notification message
  ***************************************************/
-const messageTypes = {
-    info: {
-        className: 'dis-message-info',
-        iconClassName: 'glyphicon-info-sign'
-    },
-    warning: {
-        className: 'dis-message-warning',
-        iconClassName: 'glyphicon-exclamation-sign'
-    }
-};
-
 const addDishMsg = (username, food_name) => {
     return {
-        className: 'dis-message-success',
+        className: 'dis-message-warning',
         iconClassName: 'icon-plus',
         info: '<span class="text-danger">' + username
         + '</span> orders <span class="text-danger">'
-        + food_name + '</span>'
+        + food_name + '</span>.'
     }
 };
 
@@ -31,7 +21,16 @@ const delDishMsg = (username, food_name) => {
         iconClassName: 'icon-minus',
         info: '<span class="text-danger">' + username
         + '</span> cancels <span class="text-danger">'
-        + food_name + '</span>'
+        + food_name + '</span>.'
+    }
+};
+
+const submitOrderMsg = (username) => {
+    return {
+        className: 'dis-message-success',
+        iconClassName: 'icon-cursor',
+        info: '<span class="text-danger">' + username
+        + '</span> places an order.'
     }
 };
 
@@ -39,13 +38,17 @@ const delDishMsg = (username, food_name) => {
 class Order {
     constructor(tableID) {
         this.tableID = tableID;
-        this.createDate = new Date();
+        this.createTime = new Date();
         this.dishes = {};
         this.nDish = 0;
     }
 
     getTableID() {
         return this.tableID;
+    }
+
+    getCreateTime() {
+        return this.createTime;
     }
 
     getDishes() {
@@ -92,8 +95,8 @@ const menuItemConn = (menuItemSocket) => {
         if (!params || !params.tableID || !params.username)
             return;
 
-        let tableID = params.tableID,
-            username = params.username;
+        const tableID = parseInt(params.tableID),
+              username = params.username;
         // check tableID
         if (tableID < 0 || tableID >= tableNum)
             return;
@@ -111,7 +114,7 @@ const menuItemConn = (menuItemSocket) => {
         if (orderList[tableID]) {
             thisOrder = orderList[tableID];
         } else {
-            thisOrder = new Order();
+            thisOrder = new Order(tableID);
             orderList[tableID] = thisOrder;
         }
 
@@ -129,7 +132,7 @@ const menuItemConn = (menuItemSocket) => {
                     dishList.push(dishInfo);
                 }
             }
-            menuItemSocket.to(client.id).emit('selected-dishes', dishList);
+            menuItemSocket.to(client.id).emit('reload-dishes', dishList);
         }
 
         // listen on 'add one dish' event
@@ -156,8 +159,24 @@ const menuItemConn = (menuItemSocket) => {
             }
         });
 
-        client.on('confirm-order', async dishInfo => {
+        client.on('submit-order', async username => {
+            // submit broadcast
+            if(username) {
+                menuItemSocket.to(tableID).emit('submit-order', {
+                    username: username,
+                    msg: submitOrderMsg(username)
+                });
+            }
 
+            // database operation
+            await orderModel.submitOrder({
+                tableID: thisOrder.getTableID(),
+                createTime: thisOrder.getCreateTime(),
+                foodList: thisOrder.getDishes()
+            }).catch((err) => {
+                console.error(err);
+            });
+            thisOrder.removeAllDish();
         });
     })
 };
