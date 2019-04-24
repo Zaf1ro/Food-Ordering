@@ -49,11 +49,18 @@ const emitDelDishEvent = function (dishInfo) {
         console.log("Add one dish...");
         dishInfo.num = 1;
         addDishHandler(dishInfo);
+        showMessage(dishInfo.msg);
     });
 
     socket.on('del-dish', function (dishInfo) {
-        console.log("Delete one dish...");
+        console.log('Delete one dish...');
         delDishHandler(dishInfo);
+        showMessage(dishInfo.msg);
+    });
+
+    socket.on('join-table', function(msg) {
+        console.log('Some joins table');
+        showMessage(msg);
     });
 
     socket.on('selected-dishes', function (dishList) {
@@ -81,7 +88,6 @@ const addDishHandler = function (dishInfo) {
         dishNumElem.val(newDishNum);
         totalPriceElem.text('$' + newDishNum * Number(dishInfo.price));
     }
-    // resizeDishListHeight();
     refreshAll();
 };
 
@@ -96,7 +102,6 @@ const delDishHandler = function (dishInfo) {
             totalPriceElem.text('$' + newDishNum * dishInfo.price);
         } else {
             thisDishLine.remove();
-            // resizeDishListHeight();
         }
         refreshAll();
     }
@@ -145,4 +150,30 @@ const genDishLine = function (dishInfo) {
         '<input type="text" readonly class="selected-no" value="' + dishInfo.num + '" />' +
         '<span class="plus-btn">+</span></div>' +
         '<div class="total-price">$' + (dishInfo.price * dishInfo.num) + '</div></div>';
+};
+
+const showMessage = (msg) => {
+    let msgContainer = $('.dis-message-container');
+    const msgElem = '<li class="dis-message ' + msg.className + '">'
+        + '<span class="dis-message-status ' + msg.iconClassName + '"></span>'
+        + '<div class="essage-text">' + msg.info + '</div>'
+        + '</li>';
+
+    if (msgContainer.length === 0) {
+        $('#content').append(
+            '<ul class="dis-message-container">' + msgElem + '</ul>'
+        );
+        msgContainer = $('.dis-message-container');
+    } else {
+        msgContainer.append(msgElem);
+    }
+
+    const thisMessageEle = msgContainer.children().last();
+    setTimeout(() => {
+        thisMessageEle.animate({
+            opacity: 0
+        }, 500, 'swing', function () {
+            thisMessageEle.remove();
+        });
+    }, 5000);
 };

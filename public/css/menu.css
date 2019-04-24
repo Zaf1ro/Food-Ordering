@@ -405,3 +405,113 @@
 	color: #FFFFFF;
 	background-color: #46cd38 !important;
 }
+
+/*************************************
+ *           Notification            *
+ *************************************/
+.dis-message-container {
+	position: fixed;
+	margin: 0;
+	list-style: none;
+	z-index: 10010;
+	right: 30px;
+	top: 50px;
+	left: auto;
+	padding: 0;
+}
+
+.dis-message {
+	user-select: none;
+	padding: 12px 12px 12px 40px;
+	font-size: 14px;
+	line-height: 24px;
+	text-align: left;
+	background-color: #fff;
+	border-left: 4px solid;
+	border-radius: 3px;
+	box-shadow: 0 7px 21px 0 rgba(0, 0, 0, .15);
+	color: #383838;
+	animation: message-fade-in 1s ease-in-out;
+	position: relative;
+	width: 300px;
+	top: auto;
+	left: auto;
+	right: auto;
+}
+
+.dis-message + .dis-message {
+	margin-top: 10px;
+}
+
+.dis-message.dis-message-danger {
+	border-left-color: #d43f3a
+}
+
+.dis-message.dis-message-success {
+	border-left-color: #4cae4c
+}
+
+.dis-message.dis-message-info {
+	border-left-color: #46b8da
+}
+
+.dis-message.dis-message-warning {
+	border-left-color: #eea236
+}
+
+.dis-message .dis-message-status {
+	position: absolute;
+	top: 18px;
+	left: 14px;
+}
+
+.dis-message.dis-message-danger .dis-message-status {
+	color: #d43f3a;
+}
+
+.dis-message.dis-message-success .dis-message-status {
+	color: #4cae4c;
+}
+
+.dis-message.dis-message-info .dis-message-status {
+	color: #46b8da;
+}
+
+.dis-message.dis-message-warning .dis-message-status {
+	color: #eea236;
+}
+
+.dis-message .dis-message-close {
+	position: absolute;
+	top: 16px;
+	right: 18px;
+	height: 16px;
+	width: 16px;
+	font-size: 16px;
+	line-height: 16px;
+	color: #a2abb8;
+}
+
+.dis-message .dis-message-close:hover {
+	color: #8591a2;
+}
+
+@keyframes message-fade-in {
+	0% {
+		top: -50px;
+	}
+	100% {
+		top: 0;
+	}
+}
+
+@media (min-width: 1200px) {
+	@keyframes message-fade-in {
+		0% {
+			right: -500px;
+		}
+		100% {
+			right: 0;
+		}
+	}
+}

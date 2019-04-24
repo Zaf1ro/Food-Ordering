@@ -1,6 +1,40 @@
 const menuModel = require('../data/menu');
 const tableNum = require('../data/settings').tableNum;
 
+/***************************************************
+ * Notification message
+ ***************************************************/
+const messageTypes = {
+    info: {
+        className: 'dis-message-info',
+        iconClassName: 'glyphicon-info-sign'
+    },
+    warning: {
+        className: 'dis-message-warning',
+        iconClassName: 'glyphicon-exclamation-sign'
+    }
+};
+
+const addDishMsg = (username, food_name) => {
+    return {
+        className: 'dis-message-success',
+        iconClassName: 'icon-plus',
+        info: '<span class="text-danger">' + username
+        + '</span> orders <span class="text-danger">'
+        + food_name + '</span>'
+    }
+};
+
+const delDishMsg = (username, food_name) => {
+    return {
+        className: 'dis-message-danger',
+        iconClassName: 'icon-minus',
+        info: '<span class="text-danger">' + username
+        + '</span> cancels <span class="text-danger">'
+        + food_name + '</span>'
+    }
+};
+
 // Class Order
 class Order {
     constructor(tableID) {
@@ -10,7 +44,7 @@ class Order {
         this.nDish = 0;
     }
 
-    getOrderID() {
+    getTableID() {
         return this.tableID;
     }
 
@@ -66,10 +100,15 @@ const menuItemConn = (menuItemSocket) => {
 
         // join room
         client.join(tableID);
+        menuItemSocket.to(tableID).emit('join-table', {
+            className: 'dis-message-info',
+            iconClassName: 'icon-envelope',
+            info: '<span class="text-danger">' + username + '</span> joins table'
+        });
 
         // get current order
         let thisOrder = undefined;
-        if(orderList[tableID]) {
+        if (orderList[tableID]) {
             thisOrder = orderList[tableID];
         } else {
             thisOrder = new Order();
@@ -94,24 +133,26 @@ const menuItemConn = (menuItemSocket) => {
         }
 
         // listen on 'add one dish' event
-        client.on('add-dish', async dishInfo => {
-            let food = await menuModel.findMenuItemByID(dishInfo._id).catch(err => {
+        client.on('add-dish', async orderInfo => {
+            let dishInfo = await menuModel.findMenuItemByID(orderInfo._id).catch(err => {
                 console.error(err);
             });
-            if (food) {
-                menuItemSocket.to(tableID).emit('add-dish', food);
-                thisOrder.addOneDish(food._id);
+            if (dishInfo) {
+                dishInfo.msg = addDishMsg(orderInfo.username, dishInfo.food_name);
+                menuItemSocket.to(tableID).emit('add-dish', dishInfo);
+                thisOrder.addOneDish(dishInfo._id);
             }
         });
 
         // listen on 'delete one dish' event
-        client.on('del-dish', async dishInfo => {
-            let food = await menuModel.findMenuItemByID(dishInfo._id).catch(err => {
+        client.on('del-dish', async orderInfo => {
+            let dishInfo = await menuModel.findMenuItemByID(orderInfo._id).catch(err => {
                 console.error(err);
             });
-            if (food) {
-                menuItemSocket.to(tableID).emit('del-dish', food);
-                thisOrder.removeOneDish(food._id);
+            if (dishInfo) {
+                dishInfo.msg = delDishMsg(orderInfo.username, dishInfo.food_name);
+                menuItemSocket.to(tableID).emit('del-dish', dishInfo);
+                thisOrder.removeOneDish(dishInfo._id);
             }
         });
 
