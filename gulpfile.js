@@ -24,12 +24,22 @@ const paths = {
     images: {
         src: ['public/img/*.{jpg,jpeg,png,gif}','public/img/**/*.{jpg,jpeg,png,gif}'],
         dest: 'dist/img/'
+    },
+    copy: {
+        src: ['public/lib/**/*', 'public/fonts/**/*'],
+        base: './public/',
+        dest: 'dist/'
     }
 };
 
 // clean legacy code
 const clean = () => {
     return del(['dist']);
+};
+
+const copy = () => {
+    return gulp.src(paths.copy.src,  {base: paths.copy.base})
+        .pipe(gulp.dest(paths.copy.dest));
 };
 
 /**
@@ -85,10 +95,11 @@ const images = () => {
         .pipe(gulp.dest(paths.images.dest));
 };
 
-const build = gulp.series(clean, gulp.parallel([styles, scripts, images]));
+const build = gulp.series([clean, copy], gulp.parallel([styles, scripts, images]));
 
 module.exports = {
     clean: clean,
+    copy: copy,
     views: views,
     styles: styles,
     scripts: scripts,

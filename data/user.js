@@ -5,7 +5,7 @@ const ObjectID = require("mongodb").ObjectID;
 const insertUser = async function (username, tableID) {
     if (!username || typeof username !== "string")
         throw "You must provide an valid username for user";
-    if (!tableID)
+    if (tableID === undefined)
         throw "You must provide an valid tableID for user";
 
     const userCollection = await user();

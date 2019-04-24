@@ -7,7 +7,7 @@ const asyncWrapper = utils.asyncWrapper;
 
 
 router.get('/menu', asyncWrapper(async (req, res, next) => {
-    debugPrint('Menu Get:', req.session.user);
+    debugPrint('Menu Get', req.session.user);
     if (!utils.isUserLogin(req)) {
         res.redirect('/');
         return;
