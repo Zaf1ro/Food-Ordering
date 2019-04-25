@@ -45,6 +45,14 @@
 	}
 }
 
+/* Category bar */
+#menu-list {
+	padding: 0 20px;
+}
+
+#menu-list ul li a {
+	color: #FFFFFF;
+}
 
 /***************************************
  *               Global                *

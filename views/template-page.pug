@@ -22,12 +22,19 @@ html
             if user
                 include templates/sidebar.pug
             #content
-                if user
+                if title !== 'Home'
                     nav.navbar.navbar-expand-lg.navbar-light
-                        div.container-fluid
-                else
-                    nav.navbar.navbar-expand-lg.navbar-light
-                        div.container-fluid
+                        .container-fluid#menu-list
+                            button.btn.btn-dark.d-inline-block.d-lg-none.ml-auto(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+                                span.icon-menu(aria-hidden='true', data-prefix='fas', data-icon='align-justify', role='img', xmlns='http://www.w3.org/2000/svg', viewBox='0 0 448 512', data-fa-i2svg='')
+                            #navbarSupportedContent.collapse.navbar-collapse
+                                ul.nav.navbar-nav.ml-auto
+                                    li.nav-item
+                                        a.nav-link(href='/') Home
+                                    li.nav-item
+                                        a.nav-link(href='/menu') Menu
+                                    li.nav-item
+                                        a.nav-link(href='/order') Order
                 block content
         include templates/footer.pug
 
