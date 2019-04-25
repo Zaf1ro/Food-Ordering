@@ -1,8 +1,9 @@
 $('.basket-dishes').on('click', function () {
-    if ($(".dish-list").is(":visible")) {
-        $(".dish-list").hide();
+    const dishList = $(".dish-list");
+    if (dishList.is(":visible")) {
+        dishList.hide();
     } else {
-        $(".dish-list").show();
+        dishList.show();
     }
 });
 
@@ -59,31 +60,34 @@ const emitSubmitEvent = function (tableInfo) {
         console.log("Add one dish...");
         dishInfo.num = 1;
         addDishHandler(dishInfo);
-        showMessage(dishInfo.msg);
+        if(username !== dishInfo.username)
+            showNotif(dishInfo.msg);
     });
 
     socket.on('del-dish', function (dishInfo) {
         console.log('Delete one dish...');
         delDishHandler(dishInfo);
-        showMessage(dishInfo.msg);
+        if(username !== dishInfo.username)
+            showNotif(dishInfo.msg);
     });
 
     socket.on('join-table', function (msg) {
         console.log('Some joins table');
-        showMessage(msg);
+        if(msg.username !== username)
+            showNotif(msg);
     });
 
     socket.on('reload-dishes', function (dishList) {
         console.log("Add old dishes...");
-        for (let dishInfo of dishList) {
+        for (let dishInfo of dishList)
             addDishHandler(dishInfo);
-        }
     });
 
-    socket.on('submit-order', function (tableInfo) {
+    socket.on('submit-order', function (msg) {
         console.log('Submit order...');
         delAllDishHandler();
-        showMessage(tableInfo.msg);
+        if(msg.username !== username)
+            showNotif(msg);
     });
 
 }(window, document, $));
@@ -172,7 +176,7 @@ const genDishLine = function (dishInfo) {
         '<div class="total-price">$' + (dishInfo.price * dishInfo.num) + '</div></div>';
 };
 
-const showMessage = (msg) => {
+const showNotif = (msg) => {
     let msgContainer = $('.dis-message-container');
     const msgElem = '<li class="dis-message ' + msg.className + '">'
         + '<span class="dis-message-status ' + msg.iconClassName + '"></span>'

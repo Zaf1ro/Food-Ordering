@@ -2,38 +2,6 @@ const menuModel = require('../data/menu');
 const orderModel = require('../data/order');
 const tableNum = require('../data/settings').tableNum;
 
-/***************************************************
- * Notification message
- ***************************************************/
-const addDishMsg = (username, food_name) => {
-    return {
-        className: 'dis-message-warning',
-        iconClassName: 'icon-plus',
-        info: '<span class="text-danger">' + username
-        + '</span> orders <span class="text-danger">'
-        + food_name + '</span>.'
-    }
-};
-
-const delDishMsg = (username, food_name) => {
-    return {
-        className: 'dis-message-danger',
-        iconClassName: 'icon-minus',
-        info: '<span class="text-danger">' + username
-        + '</span> cancels <span class="text-danger">'
-        + food_name + '</span>.'
-    }
-};
-
-const submitOrderMsg = (username) => {
-    return {
-        className: 'dis-message-success',
-        iconClassName: 'icon-cursor',
-        info: '<span class="text-danger">' + username
-        + '</span> places an order.'
-    }
-};
-
 // Class Order
 class Order {
     constructor(tableID) {
@@ -96,7 +64,7 @@ const menuItemConn = (menuItemSocket) => {
             return;
 
         const tableID = parseInt(params.tableID),
-              username = params.username;
+            username = params.username;
         // check tableID
         if (tableID < 0 || tableID >= tableNum)
             return;
@@ -104,6 +72,7 @@ const menuItemConn = (menuItemSocket) => {
         // join room
         client.join(tableID);
         menuItemSocket.to(tableID).emit('join-table', {
+            username: username,
             className: 'dis-message-info',
             iconClassName: 'icon-envelope',
             info: '<span class="text-danger">' + username + '</span> joins table'
@@ -141,7 +110,14 @@ const menuItemConn = (menuItemSocket) => {
                 console.error(err);
             });
             if (dishInfo) {
-                dishInfo.msg = addDishMsg(orderInfo.username, dishInfo.food_name);
+                dishInfo.username = username;
+                dishInfo.msg = {
+                    className: 'dis-message-warning',
+                    iconClassName: 'icon-plus',
+                    info: '<span class="text-danger">' + username
+                    + '</span> orders <span class="text-danger">'
+                    + dishInfo.food_name + '</span>.'
+                };
                 menuItemSocket.to(tableID).emit('add-dish', dishInfo);
                 thisOrder.addOneDish(dishInfo._id);
             }
@@ -153,7 +129,14 @@ const menuItemConn = (menuItemSocket) => {
                 console.error(err);
             });
             if (dishInfo) {
-                dishInfo.msg = delDishMsg(orderInfo.username, dishInfo.food_name);
+                dishInfo.username = username;
+                dishInfo.msg = {
+                    className: 'dis-message-danger',
+                    iconClassName: 'icon-minus',
+                    info: '<span class="text-danger">' + username
+                    + '</span> cancels <span class="text-danger">'
+                    + food_name + '</span>.'
+                };
                 menuItemSocket.to(tableID).emit('del-dish', dishInfo);
                 thisOrder.removeOneDish(dishInfo._id);
             }
@@ -161,10 +144,13 @@ const menuItemConn = (menuItemSocket) => {
 
         client.on('submit-order', async username => {
             // submit broadcast
-            if(username) {
+            if (username) {
                 menuItemSocket.to(tableID).emit('submit-order', {
                     username: username,
-                    msg: submitOrderMsg(username)
+                    className: 'dis-message-success',
+                    iconClassName: 'icon-cursor',
+                    info: '<span class="text-danger">' + username
+                    + '</span> places an order.'
                 });
             }
 
