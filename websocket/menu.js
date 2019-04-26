@@ -135,7 +135,7 @@ const menuItemConn = (menuItemSocket) => {
                     iconClassName: 'icon-minus',
                     info: '<span class="text-danger">' + username
                     + '</span> cancels <span class="text-danger">'
-                    + food_name + '</span>.'
+                    + dishInfo.food_name + '</span>.'
                 };
                 menuItemSocket.to(tableID).emit('del-dish', dishInfo);
                 thisOrder.removeOneDish(dishInfo._id);

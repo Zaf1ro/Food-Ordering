@@ -95,6 +95,13 @@ const images = () => {
         .pipe(gulp.dest(paths.images.dest));
 };
 
+// watch
+const watch = () => {
+    gulp.watch(paths.styles.src, styles);
+    gulp.watch(paths.scripts.src, scripts);
+    gulp.watch(paths.images.src, images);
+};
+
 const build = gulp.series([clean, copy], gulp.parallel([styles, scripts, images]));
 
 module.exports = {
@@ -104,5 +111,6 @@ module.exports = {
     styles: styles,
     scripts: scripts,
     images: images,
+    watch: watch,
     default: build
 };

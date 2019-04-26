@@ -13,10 +13,12 @@ router.get('/order', asyncWrapper(async (req, res, next) => {
     }
 
     const user = req.session.user;
-    let allOrder = await orderModel.findOrderByTableID(user.tableID).catch((err) => {
+    let allOrders = await orderModel.findOrderByTableID(user.tableID).catch((err) => {
         console.error(err);
     });
 
+    // convert food id to food name
+    for(let i = 0; i < allOrders.length; ++i) {
         let food_list = allOrders[i].foodList;
         for(const k in food_list) {
             const res = await menuModel.findMenuItemByID(k);

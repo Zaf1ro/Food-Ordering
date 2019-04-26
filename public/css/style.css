@@ -58,10 +58,19 @@
  *               Global                *
  ***************************************/
 body {
+	position: relative;
+	min-height: 100vh;
+	font-family: sans-serif;
 	line-height: 1.2;
 	background: url(../img/bg/default.jpg) repeat;
 	background-size: contain;
-	font-family: 'Roboto', sans-serif;
+}
+
+.wrapper {
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+	padding-bottom: 40px;
 }
 
 h1 {

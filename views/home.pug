@@ -3,7 +3,14 @@ extends template-page.pug
 block content
     style(type='text/css').
         body {
-            background: url(../img/bg/home.jpg) no-repeat;
+            background: url(../img/bg/home.jpg) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        #content {
+            display: grid;
         }
     section.slider.slider-home.d-flex.align-items-center
         .container
