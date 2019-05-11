@@ -1,46 +1,36 @@
 extends template-page.pug
 
 block content
-    section.slider.slider-menu.d-flex.align-items-center
-        .container
-            .row.justify-content-center
-                .col-md-12.filler-3
-                .col-md-6
-                    .styled-heading
-                        h3="Order"
-            .container-table100
-                .table100
-                    table
-                        thead
-                            tr.table100-head
-                                th.column1 Date
-                                th.column2 Order ID
-                                th.column3 Name
-                                th.column4 Price
-                                th.column5 Quantity
-                                th.column6 Total
-                        tbody
-                            tr
-                                td.column1 2017-09-29 01:22
-                                td.column2 200398
-                                td.column3 iPhone X 64Gb Grey
-                                td.column4 $999.00
-                                td.column5 1
-                                td.column6 $999.00
-                            tr
-                                td.column1 2017-09-28 05:57
-                                td.column2 200397
-                                td.column3 Samsung S8 Black
-                                td.column4 $756.00
-                                td.column5 1
-                                td.column6 $756.00
-                            tr
-                                td.column1 2017-09-26 05:57
-                                td.column2 200396
-                                td.column3 Game Console Controller
-                                td.column4 $22.00
-                                td.column5 2
-                                td.column6 $44.00
+    section.slider.slider-menu.d-block.align-items-center
+        if orders && orders.length > 0
+            - idx = 1;
+            for order in orders
+                .container.filler-4
+                    .row.justify-content-center
+                        .col-md-6
+                            .styled-heading
+                                h3="Order " + idx
+                                p="Create Time: " + order.createTime
+                    .container-table100
+                        p
+                        .table100
+                            table
+                                thead
+                                    tr.table100-head
+                                        th.column1 Food
+                                        th.column2 Number
+                                        th.column3 Status
+                                each food_name, food_num in order.foodList
+                                    tbody
+                                        tr
+                                            td.column1 #{food_name}
+                                            td.column2 #{food_num}
+                                            td.column3
+                                                if order.status
+                                                    label.badge.badge-gradient-success DONE
+                                                else
+                                                    label.badge.badge-gradient-process PROGRESS
+                - idx += 1
             //if orders && orders.length > 0
             //    for order, idx in orders
             //        .row

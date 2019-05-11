@@ -51,7 +51,7 @@ const emitSubmitEvent = function (tableInfo) {
         });
     });
 
-    submitBtn.on('click', () => {
+    submitBtn.on('click', function () {
         emitSubmitEvent(username);
     });
 
@@ -129,6 +129,8 @@ const delDishHandler = function (dishInfo) {
 
 const delAllDishHandler = function () {
     dishList.find('.dish-line').remove();
+    basketInfo.find('.badge').text(0);
+    basketInfo.find('.total-price').text(0);
 };
 
 const addLineHandler = function (dishLine) {

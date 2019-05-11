@@ -52,6 +52,10 @@ class Order {
         }
         this.nDish = 0;
     }
+
+    isEmpty() {
+        return this.nDish === 0;
+    }
 }
 
 const orderList = Array(tableNum);
@@ -143,16 +147,8 @@ const menuItemConn = (menuItemSocket) => {
         });
 
         client.on('submit-order', async username => {
-            // submit broadcast
-            if (username) {
-                menuItemSocket.to(tableID).emit('submit-order', {
-                    username: username,
-                    className: 'dis-message-success',
-                    iconClassName: 'icon-cursor',
-                    info: '<span class="text-danger">' + username
-                    + '</span> places an order.'
-                });
-            }
+            if(thisOrder.isEmpty())
+                return;
 
             // database operation
             await orderModel.submitOrder({
@@ -163,6 +159,17 @@ const menuItemConn = (menuItemSocket) => {
                 console.error(err);
             });
             thisOrder.removeAllDish();
+
+            // submit broadcast
+            if (username) {
+                menuItemSocket.to(tableID).emit('submit-order', {
+                    username: username,
+                    className: 'dis-message-success',
+                    iconClassName: 'icon-cursor',
+                    info: '<span class="text-danger">' + username
+                    + '</span> places an order.'
+                });
+            }
         });
     })
 };
