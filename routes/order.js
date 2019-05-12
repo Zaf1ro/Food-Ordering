@@ -1,12 +1,15 @@
 const express = require('express');
 const router = express.Router();
+
 const utils = require('./utils');
+const debugPrint = utils.debugPrint;
 const asyncWrapper = utils.asyncWrapper;
+
 const orderModel = require('../data/order');
 const menuModel = require('../data/menu');
 
 router.get('/order', asyncWrapper(async (req, res, next) => {
-    utils.debugPrint('Order Get:', req.session.user);
+    debugPrint(req);
     if (!utils.isUserLogin(req)) {
         res.redirect('/');
         return;

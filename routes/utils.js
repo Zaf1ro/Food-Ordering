@@ -1,8 +1,3 @@
-/* Error Code
- * 101: User is not logged in
- * 201: Database is not found
- */
-
 // check whether user is logged in
 isUserLogin = (req) => {
     if (!req.session.user) {
@@ -12,9 +7,12 @@ isUserLogin = (req) => {
     return true;
 };
 
-debugPrint = (message, obj) => {
-    console.log('%s: %j', message, obj);
-    console.log();
+debugPrint = (req) => {
+    const username = req.session.user ? '(' + req.session.user.username + ')' : '(Non-Authenticated User)';
+    console.log('[' + new Date().toUTCString() + '] '
+        + req.method + ' '
+        + req.originalUrl + ' '
+        + username);
 };
 
 const asyncWrapper = (fn) => (req, res, next) => {

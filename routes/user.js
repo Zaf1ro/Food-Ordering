@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const utils = require('./utils');
+const debugPrint = utils.debugPrint;
 const asyncWrapper = utils.asyncWrapper;
 const userModel = require('../data/user');
 
@@ -16,6 +17,7 @@ const registerUser = async (username, tableID) => {
 };
 
 router.post('/user/register', asyncWrapper(async (req, res, next) => {
+    debugPrint(req);
     if (!utils.isUserLogin(req)) { // new user to register
         const tableID = parseInt(req.body.tableID),
               result = await registerUser(req.body.username, tableID);
@@ -36,6 +38,7 @@ router.post('/user/register', asyncWrapper(async (req, res, next) => {
 }));
 
 router.get('/user/logout', (req, res, next) => {
+    debugPrint(req);
     req.session.user = null;
     res.redirect('/');
 });
