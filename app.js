@@ -30,7 +30,6 @@ app.use(session({
     secret: settings.sessionSecret,
     resave: true,
     saveUninitialized: true,
-    // store: mongoStore
 }));
 
 app.use((req, res, next) => {
@@ -58,7 +57,7 @@ app.use((req, res, next) => {
 const menuModel = require('./data/menu');
 menuModel.initMenu().then((res) => {
     if (!res)
-        console.log('Fail to init menu database');
+        console.error('Fail to init menu database...');
 }).catch((err) => {
     console.log(err);
 });

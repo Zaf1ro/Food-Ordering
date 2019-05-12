@@ -17,10 +17,10 @@ block content
                             table
                                 thead
                                     tr.table100-head
-                                        th.column1 Food
+                                        th.column1 Food Name
                                         th.column2 Number
                                         th.column3 Status
-                                each food_name, food_num in order.foodList
+                                each food_num, food_name in order.foodList
                                     tbody
                                         tr
                                             td.column1 #{food_name}
@@ -31,36 +31,6 @@ block content
                                                 else
                                                     label.badge.badge-gradient-process PROGRESS
                 - idx += 1
-            //if orders && orders.length > 0
-            //    for order, idx in orders
-            //        .row
-            //            .col-12.grid-margin
-            //                .card
-            //                    .card-body
-            //                        h4.card-title Order #{idx}
-            //                        .table-responsive
-            //                            table.table
-            //                                thead
-            //                                    tr
-            //                                        th
-            //                                            | Food
-            //                                        th
-            //                                            | Number
-            //                                        th
-            //                                            | Status
-            //                                        each food_name, food_num in order.foodList
-            //                                            tbody
-            //                                                tr
-            //                                                    td
-            //                                                        | #{food_name}
-            //                                                    td
-            //                                                        | #{food_num}
-            //                                                    td
-            //                                                        if order.status
-            //                                                            label.badge.badge-gradient-success DONE
-            //                                                        else
-            //                                                            label.badge.badge-gradient-process PROGRESS
-
 
 block styles
     link(rel='stylesheet', href='/css/order.css')

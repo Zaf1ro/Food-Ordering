@@ -4,10 +4,10 @@ const hideOrShowSlider = () => {
         if ($('#FilterDropdown').find('input').eq(index).prop("checked")) {
             // hide slider when there's no menu item
             const parent = this;//you'll often see code like this
-            parent.hide();
-            $(this).each('.featured-responsive', function() {
-                if($(this).display !== "none") {
-                    parent.show();
+            $(parent).hide();
+            $(parent).find('.featured-responsive').each(function () {
+                if(jQuery.css(this, "display" ) !== "none") {
+                    $(parent).show();
                 }
             });
         }
@@ -73,7 +73,7 @@ $(document).ready(function () {
         if (!inKey)
             inKey = undefined;
         hideOrShowMenuItem(inKey, exKey);
-        // hideOrShowSlider();
+        hideOrShowSlider();
     });
 
     $("#exclude-input").on("keyup", function () {

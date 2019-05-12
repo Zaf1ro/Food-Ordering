@@ -50,7 +50,7 @@ const findMenuItemByCat = async (category) => {
     });
 };
 
-const findMenuItemByName = async (menuName) => {
+const findMenuItemByName = async (menuName, flag) => {
     if (!menuName || typeof menuName !== 'string')
         throw "You must provide an valid name for searching menu item";
 
@@ -58,16 +58,15 @@ const findMenuItemByName = async (menuName) => {
     const res = await menuCollection.findOne({
         food_name: menuName
     });
-    if (!res)
+    if (!res && flag)
         console.error('Cannot find item by menu name...');
     return res;
 };
 
 const initMenu = async () => {
     const appetizer = require('./json/menu');
-    let res = undefined;
     for (let item of appetizer) {
-        res = await findMenuItemByName(item.food_name);
+        let res = await findMenuItemByName(item.food_name, false);
         if (!res) {
             res = await insertMenuItem(item);
             if (!res)
