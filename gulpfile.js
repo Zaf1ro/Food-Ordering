@@ -1,6 +1,5 @@
 const gulp = require('gulp'),
       del = require('del'),
-      pug = require('gulp-pug'),
       cleanCSS = require('gulp-clean-css'),
       autoprefixer = require('gulp-autoprefixer'),
       cached = require('gulp-cached'),
@@ -9,10 +8,6 @@ const gulp = require('gulp'),
       babel = require('gulp-babel');
 
 const paths = {
-    views: {
-        src: 'views/404.pug',
-        dest: 'dist/views/'
-    },
     styles: {
         src: 'public/css/*.css',
         dest: 'dist/css/'
@@ -40,20 +35,6 @@ const clean = () => {
 const copy = () => {
     return gulp.src(paths.copy.src,  {base: paths.copy.base})
         .pipe(gulp.dest(paths.copy.dest));
-};
-
-/**
- * Build html from views
- * FIXME: not to be used
- */
-const views = () => {
-    return gulp.src(paths.views.src)
-        .pipe(cached('views'))
-        .pipe(pug({
-            doctype: 'html',
-            pretty: true
-        }))
-        .pipe(gulp.dest(paths.views.dest));
 };
 
 /**
@@ -107,7 +88,6 @@ const build = gulp.series([clean, copy], gulp.parallel([styles, scripts, images]
 module.exports = {
     clean: clean,
     copy: copy,
-    views: views,
     styles: styles,
     scripts: scripts,
     images: images,
