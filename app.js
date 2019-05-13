@@ -25,7 +25,7 @@ const server = app.listen(PORT, () => {
 // session
 const session = require('express-session');
 app.use(session({
-    cookie: {maxAge: 1800000, secure: false},
+    cookie: {maxAge: 86400000, secure: false},
     errorCode: 0,
     secret: settings.sessionSecret,
     resave: true,
